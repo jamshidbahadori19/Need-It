@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
+import {Button,Col,Form,InputGroup,Row} from "react-bootstrap"
 import axios from 'axios'
 
 /* name : String,
@@ -40,7 +36,7 @@ function ProductForm() {
 
   return (
     <Form noValidate onSubmit={addProduct}>
-      <Row className="mb-3">
+      <Row className="mb-3" >
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>Name of product</Form.Label>
           <Form.Control
