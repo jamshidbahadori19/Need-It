@@ -8,6 +8,8 @@ import ImgMediaCard from "./components/pages/home/ProductList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
+/* import RecipeReviewCard from "./components/cards/Cards"; */
+
 
 function App() {
   return (
@@ -15,9 +17,8 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/productForm" element={<ProductForm/>}></Route>
-        <Route path="/home" element={<Products/>}></Route>
-      </Routes>
-      <ImgMediaCard/>
+        <Route path="/home" element={<><Products/><ImgMediaCard/> </>}></Route>
+        </Routes>
       <Footer/>
     </div>
   );
