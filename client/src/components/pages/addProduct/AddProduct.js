@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import {Button,Col,Form,InputGroup,Row} from "react-bootstrap"
 import axios from 'axios'
+import {useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode"
 
-/* name : String,
-category:String,
-photo: String,
-description: String,
-price:Number,
-Place:String */
 function ProductForm() {
   const[name,setName]=useState("")
   const[category,setCategory] = useState("")
@@ -15,6 +11,19 @@ function ProductForm() {
   const[description,setDescription]=useState("")
   const[price,setPrice]=useState("")
   const[place,setPlace] = useState("")
+
+  let token = localStorage.getItem("token") 
+  let navigate = useNavigate()
+  let decoded;
+
+  if (token) {
+    try {
+      decoded = jwt_decode(token);
+      console.log(decoded)
+    } catch (error) {
+      navigate("/user/login");
+    }
+  }
 
 
   async function addProduct(e){
@@ -27,7 +36,12 @@ function ProductForm() {
         price:price,
         Place:place,
       }
-      let response = await axios.post("http://localhost:3000/createProduct",addProduct)
+      let response = await axios.post("http://localhost:3000/createProduct",
+      addProduct,{
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
       .then((res)=>alert(res.data.msg))
       
   }
@@ -36,7 +50,8 @@ function ProductForm() {
 
   return (
     <Form noValidate onSubmit={addProduct}>
-      <Row className="mb-3" >
+      {token?(<>
+        <Row className="mb-3" >
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>Name of product</Form.Label>
           <Form.Control
@@ -116,6 +131,12 @@ function ProductForm() {
         />
       </Form.Group>
       <Button type="submit">Submit form</Button>
+      </>):(<>
+        <div>
+          please log in first
+        </div>
+      </>)}
+      
     </Form> 
   );
 }
