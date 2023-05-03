@@ -1,16 +1,18 @@
-import { useState } from "react";
+
 import {Button,Container,Form,Nav,Navbar,NavDropdown} from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 
 function NavScrollExample() {
   let token = localStorage.getItem("token") 
-  const navigate = useNavigate();
+  let navigate = useNavigate()
   let decoded;
+  console.log(decoded)
 
   if (token) {
     try {
       decoded = jwt_decode(token);
+      console.log(decoded)
     } catch (error) {
       localStorage.removeItem("token");
       navigate("/user/login");
@@ -29,12 +31,14 @@ function NavScrollExample() {
         <Navbar.Brand href="#">NeedIt</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
+        {token?(
+            <>
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px', margin:"20px" }}
             navbarScroll
           >
-            <Nav.Link as={Link} to={"home"}>Home</Nav.Link>
+            <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
             <Nav.Link as={Link} to={"productForm"}>Add Products</Nav.Link>
             <NavDropdown title="Category" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Shirt</NavDropdown.Item>
@@ -60,17 +64,22 @@ function NavScrollExample() {
             <Button variant="outline-success">Search</Button>
             {/* <Nav.Link as={Link} to={"/user/singUp"}>signup</Nav.Link> */}
           </Form>
-          {token?(
-          <>
+          
           {/* <a to="#">{decoded ? decoded.username : null}</a> */}
           <Nav.Link as={Link} onClick={logout} to={"/user/singUp"}>logout</Nav.Link>
-          </>)
+          </>
+          )
           :
           (
           <>
+            <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
+            <Nav.Link disabled>Add Products</Nav.Link>
+            <NavDropdown title="Category" id="navbarScrollingDropdown" disabled></NavDropdown>
+            <Nav.Link disabled>favorites</Nav.Link>
             <Nav.Link as={Link} to={"/user/signUp"}>signup</Nav.Link>
             <Nav.Link as={Link} to={"/user/login"}>login</Nav.Link>
-          </>)}
+          </>
+          )}
           
         </Navbar.Collapse>
       </Container>

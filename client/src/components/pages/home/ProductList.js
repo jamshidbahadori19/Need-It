@@ -12,8 +12,13 @@ function ImgMediaCard() {
     useEffect(()=>{
         getAllCards()
     },[])
+
+    async function deleteItem(id){
+        let response = await axios.delete(`http://localhost:3000/deleteProduct/${id}`)
+        getAllCards()
+    }
     return ( 
-        <div style={{display:"flex",justifyContent:"space-evenly", margin:10}}>
+        <div style={{display:"flex",justifyContent:"space-evenly", margin:10,flexWrap:"wrap"}}>
             {cards.map((card)=>{
                 return (
                     <div key={card._id}>
@@ -25,6 +30,8 @@ function ImgMediaCard() {
                             <p>description:{card.description}</p>
                             <p>place:{card.Place}</p>
                         </div>
+                        <button>like</button>
+                        <button onClick={()=>deleteItem(card._id)}>delete</button>
                     </div>
                 )
             })}

@@ -27,11 +27,19 @@ function LoginForm() {
         try {
             e.preventDefault()
             let user = {username,password}
-            let response = await axios.post("http://localhost:3000/user/login",user);
+            let response = await axios.post("http://localhost:3000/user/login",
+            user,
+            {
+              headers: {
+                Authorization:`Bearer ${token}`,
+              },
+            }
+          );
+          console.log(response.data.token)
             if(response.data.msg==="welcome"){
+              localStorage.setItem("token", response.data.token);
                 alert("welcome")
                 navigate("/home");
-                localStorage.setItem("token", response.data);
                 
             }else{
                 alert("")

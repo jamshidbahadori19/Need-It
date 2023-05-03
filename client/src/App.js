@@ -19,7 +19,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/productForm" element={<ProductForm/>}></Route>
-        <Route path="/home" element={<><Products/><ImgMediaCard/> </>}></Route>
+        <Route path="/" element={<><Products/><ImgMediaCard/> </>}></Route>
         <Route path="/user/signUp" element={<AuthenticationForm/>}></Route>
         <Route path="/user/login" element={<LoginForm/>}></Route>
         </Routes>
