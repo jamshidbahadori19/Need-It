@@ -7,12 +7,10 @@ function NavScrollExample() {
   let token = localStorage.getItem("token") 
   let navigate = useNavigate()
   let decoded;
-  console.log(decoded)
 
   if (token) {
     try {
       decoded = jwt_decode(token);
-      console.log(decoded)
     } catch (error) {
       localStorage.removeItem("token");
       navigate("/user/login");
