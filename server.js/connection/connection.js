@@ -1,3 +1,5 @@
+/* connecting data base with the backend */
+
 const mongoose = require("mongoose")
 require("dotenv").config()
 

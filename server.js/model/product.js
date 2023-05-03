@@ -1,3 +1,5 @@
+/* this is Schema is for adding product */
+
 const mongoose = require("mongoose")
 
 const ProductSchema = new mongoose.Schema({

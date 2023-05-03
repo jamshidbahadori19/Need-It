@@ -1,3 +1,5 @@
+/* this is user Schema in where we can log in or sign up */
+
 const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({

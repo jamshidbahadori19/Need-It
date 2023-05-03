@@ -6,6 +6,7 @@ import { useNavigate,Link } from "react-router-dom";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,Grid,Typography,createTheme, ThemeProvider} from "@mui/material"
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PasswordStrengthBar from 'react-password-strength-bar';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -23,6 +24,7 @@ function AuthenticationForm() {
     const [username,setUserName] = useState("") 
     const [password,setPassword] = useState("")
     const navigate = useNavigate()
+    /* const { password } = this.state; */
     
     async function login(e){
         try {
@@ -85,8 +87,10 @@ function AuthenticationForm() {
                 name="email"
                 onChange={(e)=> setUserName(e.target.value)}
                 autoFocus
+                
               />
-              <TextField
+              <TextField 
+              
                 margin="normal"
                 required
                 fullWidth
@@ -96,6 +100,7 @@ function AuthenticationForm() {
                 id="password"
                 onChange={(e)=> setPassword(e.target.value)}
               />
+              <PasswordStrengthBar password={password} />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"

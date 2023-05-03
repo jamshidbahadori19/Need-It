@@ -50,13 +50,18 @@ function ProductForm() {
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
           <Form.Label>category</Form.Label>
-          <Form.Control
+          {/* <Form.Control
             required
             type="text"
             placeholder="category"
             value={category}
             onChange={(e)=>setCategory(e.target.value)}
-          />
+          /> */}
+          <Form.Select required value={category} onChange={(e)=>setCategory(e.target.value)}>
+            <option>shirt</option>
+            <option>Jeans</option>
+            <option>T-shirt</option>
+          </Form.Select>
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustomUsername">

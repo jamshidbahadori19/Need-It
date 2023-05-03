@@ -5,6 +5,7 @@ require("dotenv").config()
 const salt = Number(process.env.Salt_round)
 const jwt = require("jsonwebtoken")
 
+/* createNewUser is for sign up */
 
 const createNewUser = async (req,res)=>{
     try {
@@ -27,7 +28,7 @@ const createNewUser = async (req,res)=>{
             res.status(500).send({msg:"can not signup, please try again later",error})
         }
 }
-
+/* get user is for log in */
 const getUser = async (req,res)=>{
    try {
     let {username,password} = req.body
@@ -54,7 +55,7 @@ const getUser = async (req,res)=>{
     res.status(500).send({msg:"can not login, please try again later",error})
    }
 }
-
+/* getting all the user is just for testing to make sure that we can create user */
 const getAllUsers = async (req,res)=>{
     const response = await User.find(req.body)
     res.send(response)
