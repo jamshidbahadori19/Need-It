@@ -5,9 +5,9 @@ const {createNewUser,getUser, getAllUsers} = require("../controllers/userControl
 const verifyToken = require("../middleware/auth")
 /* product router */
 router.get("/getAllProducts",getAllProducts)
-router.post("/createProduct",createProduct)
-router.put("/updateProduct/:id",updateProduct)
-router.delete("/deleteProduct/:id",deleteProduct) 
+router.post("/createProduct",verifyToken,createProduct)
+router.put("/updateProduct/:id",verifyToken,updateProduct)
+router.delete("/deleteProduct/:id",verifyToken,deleteProduct) 
 
 /* User router */
 router.post("/user/login",getUser)
