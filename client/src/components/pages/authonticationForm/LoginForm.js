@@ -39,7 +39,7 @@ function LoginForm() {
             if(response.data.msg==="welcome"){
               localStorage.setItem("token", response.data.token);
                 alert("welcome")
-                navigate("/home");
+                navigate("/");
                 
             }else{
                 alert("")

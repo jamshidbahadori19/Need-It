@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
 
-function ImgMediaCard() {
+function ImgMediaCard({id}) {
     let token = localStorage.getItem("token") 
     let decoded;
 
@@ -21,6 +22,7 @@ function ImgMediaCard() {
         /* console.log(response.data.get_product) */
         setCards(response.data.get_product)
     }
+
     useEffect(()=>{
         getAllCards()
     },[])
@@ -48,6 +50,7 @@ function ImgMediaCard() {
             {cards.map((card)=>{
                 return (
                     <div key={card._id}>
+                        <Link to={`/eachProduct/${card._id}`}>
                         <div>{card.photo&&<img src={card.photo} alt="card" style={{width:200,height:200}} />}</div>
                         <div>
                             <h2>model:{card.name}</h2>
@@ -56,6 +59,7 @@ function ImgMediaCard() {
                             <p>description:{card.description}</p>
                             <p>place:{card.Place}</p>
                         </div>
+                        </Link>
                         {token?(
                             <>
                             <button>like</button>
@@ -67,6 +71,7 @@ function ImgMediaCard() {
                             <button disabled>delete</button>
                             </>
                         )}
+                       
                         
                     </div>
                 )

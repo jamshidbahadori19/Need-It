@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import AuthenticationForm from "./components/pages/authonticationForm/AuthenticationForm";
 import LoginForm from "./components/pages/authonticationForm/LoginForm";
+import EachProduct from "./components/pages/products/EachProduct";
 
 /* import RecipeReviewCard from "./components/cards/Cards"; */
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<><Products/><ImgMediaCard/> </>}></Route>
         <Route path="/user/signUp" element={<AuthenticationForm/>}></Route>
         <Route path="/user/login" element={<LoginForm/>}></Route>
+        <Route path="/eachProduct/:id" element={<EachProduct/>}></Route>
         </Routes>
       <Footer/>
     </div>

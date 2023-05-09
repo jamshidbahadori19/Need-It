@@ -3,6 +3,7 @@ import {Button,Container,Form,Nav,Navbar,NavDropdown} from "react-bootstrap"
 import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 
+
 function NavScrollExample() {
   let token = localStorage.getItem("token") 
   let navigate = useNavigate()
@@ -13,13 +14,13 @@ function NavScrollExample() {
       decoded = jwt_decode(token);
     } catch (error) {
       localStorage.removeItem("token");
-      navigate("/user/login");
+      navigate("/");
     }
   }
 
   function logout() {
     if(window.confirm("Are you sure that you want to logout?")){  
-    localStorage.removeItem("token");
+    localStorage.removeItem("token")
     }
   }
 
@@ -51,6 +52,11 @@ function NavScrollExample() {
               Link
             </Nav.Link>
             <Nav.Link>favorites</Nav.Link>
+            <Button style={{ width: "3rem", height: "3rem", position: "relative" }}
+            variant="outline-primary"
+            className="rounded-circle">
+               <img/>
+            </Button>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -64,7 +70,7 @@ function NavScrollExample() {
           </Form>
           
           {/* <a to="#">{decoded ? decoded.username : null}</a> */}
-          <Nav.Link as={Link} onClick={logout} to={"/user/singUp"}>logout</Nav.Link>
+          <Nav.Link as={Link} onClick={logout} to={"/user/login"}>logout</Nav.Link>
           </>
           )
           :
