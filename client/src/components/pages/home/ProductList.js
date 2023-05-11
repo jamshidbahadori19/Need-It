@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
+import PaymentButton from "../payment/PaymentButton";
 
 function ImgMediaCard({id}) {
     let token = localStorage.getItem("token") 
@@ -11,7 +12,6 @@ function ImgMediaCard({id}) {
     if (token) {
         try {
           decoded = jwt_decode(token);
-          console.log(decoded)
         } catch (error) {
           console.log(error)
         }
@@ -64,11 +64,13 @@ function ImgMediaCard({id}) {
                             <>
                             <button>like</button>
                             <button onClick={()=>deleteItem(card._id)}>delete</button>
+                            <PaymentButton cardItem={cards}/>
                             </>
                         ):(
                             <>
                             <button disabled>like</button>
                             <button disabled>delete</button>
+
                             </>
                         )}
                        
