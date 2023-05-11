@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
+import PaymentButton from "../payment/PaymentButton";
 
 
 function EachProduct(props) {
@@ -24,6 +25,7 @@ function EachProduct(props) {
                 <p>description:{cards.description}</p>
                 <p>place:{cards.Place}</p>
             </div>
+            <PaymentButton/>
             
         </div>
     )

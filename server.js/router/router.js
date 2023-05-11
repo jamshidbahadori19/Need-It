@@ -3,6 +3,7 @@ const router = express.Router()
 const {getAllProducts,createProduct,deleteProduct,updateProduct,getSpecificProduct,SaveLikedProduct,getLikedProducts} = require("../controllers/productControllers")
 const {createNewUser,getUser, getAllUsers} = require("../controllers/userController")
 const verifyToken = require("../middleware/auth")
+const payment = require("../controllers/strip_payment")
 /* product router */
 router.get("/getAllProducts",getAllProducts)
 router.post("/createProduct",verifyToken,createProduct)
@@ -19,5 +20,8 @@ router.get("/getSpecificProduct/:id",getSpecificProduct)
 router.post("/user/login",getUser)
 router.post("/user/signUp",createNewUser)
 router.get("/getAllUsers",getAllUsers)
+
+//payment 
+router.post("/create-checkout-session",payment)
 
 module.exports = router
