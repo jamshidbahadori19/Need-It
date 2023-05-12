@@ -64,7 +64,7 @@ function ImgMediaCard({id}) {
                             <>
                             <button>like</button>
                             <button onClick={()=>deleteItem(card._id)}>delete</button>
-                            <PaymentButton cardItem={cards}/>
+                            <PaymentButton cardItem={card}/>
                             </>
                         ):(
                             <>
