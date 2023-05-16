@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
-import PaymentButton from "../payment/PaymentButton";
+import AddToCart from "../Buttons/AddToCart";
+import WishButton from "../Buttons/AddToWishList";
 
 function ImgMediaCard() {
     let token = localStorage.getItem("token") 
@@ -46,33 +47,6 @@ function ImgMediaCard() {
         }
     }
 
-    async function addToWishlist(card){
-        try {
-            let response = await axios.put(`http://localhost:3000/addToWishBasket`,card,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    },
-            })
-            alert(response.data.msg)
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function addToCart(card){
-        try {
-            let response = await axios.put(`http://localhost:3000/addToCart/${card._id}`,card,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    },
-            })
-            alert(response.data.msg)
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     return ( 
         <div style={{display:"flex",justifyContent:"space-evenly", margin:10,flexWrap:"wrap"}}>
@@ -91,11 +65,9 @@ function ImgMediaCard() {
                         </Link>
                         {token?(
                             <>
-                            <button onClick={()=>addToWishlist(card)}>add to wish list</button>
-                            <button onClick={()=>addToCart(card)}>add to cart</button>
                             <button onClick={()=>deleteItem(card._id)}>delete</button>
-                            {/* <DeleteButton cardItem={card}/> */}
-                            <PaymentButton cardItem={card}/>
+                            <WishButton cardItem={card}/>
+                            <AddToCart cardItem= {card}/>
                             </>
                         ):(
                             <>

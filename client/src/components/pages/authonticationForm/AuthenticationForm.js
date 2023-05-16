@@ -24,14 +24,12 @@ function AuthenticationForm() {
     const [username,setUserName] = useState("") 
     const [password,setPassword] = useState("")
     const navigate = useNavigate()
-    /* const { password } = this.state; */
     
     async function login(e){
         try {
             e.preventDefault()
             let user = {username,password}
             let response = await axios.post("http://localhost:3000/user/signUp",user);
-            console.log(response)
             if(response.data.msg==="registered successfully"){
                 alert(response.data.msg)
                 navigate("/user/login")

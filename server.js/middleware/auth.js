@@ -11,7 +11,6 @@ const verifyToken = (req,res,next)=>{
             res.status(401).send({msg:"unauthorized"})
         }
         let verifiedToken = jwt.verify(token,process.env.Private_key)
-        console.log(verifiedToken)
         if(!verifiedToken){
             res.send({msg:"not a valid token"})
         }else{

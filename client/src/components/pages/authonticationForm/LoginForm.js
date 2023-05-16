@@ -35,14 +35,13 @@ function LoginForm() {
               },
             }
           );
-          console.log(response.data.token)
             if(response.data.msg==="welcome"){
               localStorage.setItem("token", response.data.token);
                 alert("welcome")
                 navigate("/");
                 
             }else{
-                alert("")
+                return
             }
         } catch (error) {
             console.log(error)
