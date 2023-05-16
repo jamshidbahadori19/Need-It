@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import PaymentButton from "../payment/PaymentButton";
+import AddToCart from "../Buttons/AddToCart";
 
 function WishList() {
     const [saveProduct, setSaveProduct] = useState([]);
+    const [deleteProduct,setDeleteProduct] = useState(true)
     let token = localStorage.getItem("token");
     console.log(token)
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ function WishList() {
                       <p>description:{savedProduct.description}</p>
                       <p>place:{savedProduct.Place}</p>
                   </div>
-                  <PaymentButton cardItem={savedProduct}/>
+                  <AddToCart cardItem={savedProduct}/>
                </div>
               ))}
             </div>

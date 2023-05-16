@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PaymentButton from "./PaymentButton";
+import PayAllButton from "./PayAllButton";
 
 function CartForm() {
     const [saveProduct, setSaveProduct] = useState([]);
     let token = localStorage.getItem("token");
-    console.log(token)
     const navigate = useNavigate();
 
     async function getSavedProducts() {
@@ -43,6 +43,7 @@ function CartForm() {
                   <PaymentButton cardItem={savedProduct}/>
                </div>
               ))}
+               <PayAllButton cardItem={saveProduct}/>
             </div>
           )}
         </div>

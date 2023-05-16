@@ -3,7 +3,7 @@ const router = express.Router()
 const {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts} = require("../controllers/productControllers")
 const {createNewUser,getUser, getAllUsers} = require("../controllers/userController")
 const verifyToken = require("../middleware/auth")
-const {payment} = require("../controllers/strip_payment")
+const {payment,payAllProducts} = require("../controllers/strip_payment")
 /* product router */
 router.get("/getAllProducts",getAllProducts)
 router.post("/createProduct",verifyToken,createProduct)
@@ -18,6 +18,7 @@ router.get("/getAllUsers",getAllUsers)
 
 //payment 
 router.post("/create-checkout-session",payment)
+router.post("/payAllProducts",payAllProducts)
 
 //Wish basket 
 router.put("/addToWishBasket",verifyToken,SaveWishProduct)
