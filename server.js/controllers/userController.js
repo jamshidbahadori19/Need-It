@@ -45,8 +45,8 @@ const getUser = async (req,res)=>{
         }else{
             let token = jwt.sign(
                 {userId: userFound._id,username:userFound.username},
-                process.env.Private_key,
-                { expiresIn: 60 * 60 }
+                process.env.Private_key
+           /*      { expiresIn: 60 * 60 } */
                 )
             res.send({msg:"welcome",token})
         }

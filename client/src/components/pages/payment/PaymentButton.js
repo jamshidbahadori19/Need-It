@@ -2,7 +2,6 @@ import axios from "axios"
 /* import {Button} from "bootstrap" */
 
 const PaymentButton = ({cardItem})=>{
-    console.log("card Item test: ",cardItem)
     const handleCheckout=()=>{
         axios.post(`http://localhost:3000/create-checkout-session`,{
             cardItem, 

@@ -18,9 +18,47 @@ const deleteProduct = async (req,res)=>{
     res.send({msg:"deleted product",delete_product})
 }
 
-const updateProduct = async (req,res)=>{
-    const update_product = await Product.updateOne({_id:req.params.id},req.body)
-    res.send({msg:"updated product",update_product})
+//Cart controllers
+
+const addToCart = async (req,res)=>{
+    try {
+        let {id,
+            name,
+            category,
+            photo,
+            description,
+            price,
+            Place, } = req.body;
+        let addProduct = {
+            id,
+            name,
+            category,
+            photo,
+            description,
+            price,
+            Place,
+        };
+        let productId = req.user.userId
+        await User.findOneAndUpdate(
+          { _id: productId },
+          { $addToSet: { cartBasket: addProduct } }
+        );
+        return res.send({ msg: "Added to cart Basket!", addProduct});
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Server Error");
+      }
+}
+const getSavedCartProducts = async (req,res)=>{
+    try {
+        let productId = req.user.userId
+        let product = await User.findById(productId);
+        let getAllCartProducts = product.cartBasket;
+        res.json(getAllCartProducts);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+      }
 }
 
 // get specific product 
@@ -30,9 +68,9 @@ const getSpecificProduct = async (req,res)=>{
     res.send({msg:"All specific products: ",get_specific_product})
 }
 
-//saving the liked movie 
+//saving the wish products 
 
-const SaveLikedProduct = async(req,res)=>{
+const SaveWishProduct = async(req,res)=>{
     try {
         let {id,
             name,
@@ -41,7 +79,7 @@ const SaveLikedProduct = async(req,res)=>{
             description,
             price,
             Place, } = req.body;
-        let newProduct = {
+        let wishedProduct = {
             id,
             name,
             category,
@@ -50,12 +88,12 @@ const SaveLikedProduct = async(req,res)=>{
             price,
             Place,
         };
-        let productId = req.params.id
+        let productId = req.user.userId
         await User.findOneAndUpdate(
           { _id: productId },
-          { $addToSet: { favorite: newProduct } }
+          { $addToSet: { wishList: wishedProduct } }
         );
-        return res.send({ msg: "Your product is saved successfully!", newProduct});
+        return res.send({ msg: "Added to wish Basket!", wishedProduct});
       } catch (error) {
         console.error(error);
         res.status(500).send("Server Error");
@@ -64,10 +102,12 @@ const SaveLikedProduct = async(req,res)=>{
 
 // get the liked movies 
 
-const getLikedProducts = async (req,res)=>{
+const getSavedProducts = async (req,res)=>{
     try {
-        const get_liked_products = await User.find()
-        res.send(get_liked_products)
+        let productId = req.user.userId
+        let user = await User.findById(productId);
+        let getAllSavedProducts = user.wishList;
+        res.json(getAllSavedProducts);
       } catch (error) {
         console.error(error);
         res.status(500).send("Server error");
@@ -75,4 +115,4 @@ const getLikedProducts = async (req,res)=>{
 }
 
 
-module.exports = {getAllProducts,createProduct,deleteProduct,updateProduct,getSpecificProduct,SaveLikedProduct,getLikedProducts}
+module.exports = {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts}
