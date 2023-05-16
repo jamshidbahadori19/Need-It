@@ -5,7 +5,7 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import PaymentButton from "../payment/PaymentButton";
 
-function ImgMediaCard({id}) {
+function ImgMediaCard() {
     let token = localStorage.getItem("token") 
     let decoded;
 
@@ -45,6 +45,35 @@ function ImgMediaCard({id}) {
         console.log("Error deleting movie");
         }
     }
+
+    async function addToWishlist(card){
+        try {
+            let response = await axios.put(`http://localhost:3000/addToWishBasket`,card,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    },
+            })
+            alert(response.data.msg)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function addToCart(card){
+        try {
+            let response = await axios.put(`http://localhost:3000/addToCart/${card._id}`,card,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    },
+            })
+            alert(response.data.msg)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return ( 
         <div style={{display:"flex",justifyContent:"space-evenly", margin:10,flexWrap:"wrap"}}>
             {cards.map((card)=>{
@@ -62,8 +91,10 @@ function ImgMediaCard({id}) {
                         </Link>
                         {token?(
                             <>
-                            <button>like</button>
+                            <button onClick={()=>addToWishlist(card)}>add to wish list</button>
+                            <button onClick={()=>addToCart(card)}>add to cart</button>
                             <button onClick={()=>deleteItem(card._id)}>delete</button>
+                            {/* <DeleteButton cardItem={card}/> */}
                             <PaymentButton cardItem={card}/>
                             </>
                         ):(

@@ -2,27 +2,9 @@ const express = require("express")
 const Strip = require("stripe")
 require("dotenv").config()
 const stripe =Strip(process.env.STRIP_key)
+
 const payment = async (req,res)=>{
 const item = req.body.cardItem
-/* console.log(req.body.cardItem) */
-/*  const line_items = req.body.cardItem.map((item)=>{
-  return {
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: item.name,
-        description: item.description,
-        images: [item.photo],
-        place:item.place,
-        metadata: {
-          id: item._id
-        }
-      },
-      unit_amount: item.price * 100,
-    },
-    quantity: 1,
-  }
- }) */
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -49,4 +31,5 @@ const item = req.body.cardItem
       res.send({url:session.url});
 }
 
-module.exports = payment
+
+module.exports = {payment}

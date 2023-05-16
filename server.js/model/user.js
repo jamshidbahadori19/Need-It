@@ -6,7 +6,8 @@ const UserSchema = new mongoose.Schema({
     username : String,
     password: String,
     /* adding the favorite section */
-    favorite:[]
+    wishList:[],
+    cartBasket:[]
 })
 
 const User = mongoose.model("User",UserSchema)
