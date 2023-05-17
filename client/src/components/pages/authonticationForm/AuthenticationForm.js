@@ -67,7 +67,13 @@ function AuthenticationForm() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              ":hover":{
+                boxShadow:"10px 10px 10px #ccc",
+              },
             }}
+            padding={4}
+            borderRadius={5}
+            boxShadow={"5px 5px 5px #ccc"}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
@@ -83,6 +89,7 @@ function AuthenticationForm() {
                 id="email"
                 label="Email Address"
                 name="email"
+                type="email"
                 onChange={(e)=> setUserName(e.target.value)}
                 autoFocus
                 
