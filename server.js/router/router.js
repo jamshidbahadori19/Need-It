@@ -1,6 +1,6 @@
 const express  = require("express")
 const router = express.Router()
-const {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts} = require("../controllers/productControllers")
+const {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts,deleteWishProduct,deleteCartProduct} = require("../controllers/productControllers")
 const {createNewUser,getUser, getAllUsers} = require("../controllers/userController")
 const verifyToken = require("../middleware/auth")
 const {payment,payAllProducts} = require("../controllers/strip_payment")
@@ -21,10 +21,12 @@ router.post("/create-checkout-session",payment)
 router.post("/payAllProducts",payAllProducts)
 
 //Wish basket 
-router.put("/addToWishBasket",verifyToken,SaveWishProduct)
+router.put("/addToWishBasket/:id",verifyToken,SaveWishProduct)
 router.get("/getSavedProduct",verifyToken,getSavedProducts)
+router.delete("/deleteWishProduct/:id",verifyToken,deleteWishProduct) 
 
 //Cart basket
 router.put("/addToCart/:id",verifyToken,addToCart)
 router.get("/getCartProducts",verifyToken,getSavedCartProducts)
+router.delete("/deleteCartProduct/:id",verifyToken,deleteCartProduct) 
 module.exports = router

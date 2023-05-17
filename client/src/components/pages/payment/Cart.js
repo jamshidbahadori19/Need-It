@@ -22,6 +22,21 @@ function CartForm() {
         });
         setSaveProduct(response.data) 
       }
+
+
+      async function handleDelete(id){
+        let response = await axios.delete(`http://localhost:3000/deleteCartProduct/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+      })
+      if (response.status === 200) {
+        alert("Product deleted successfully!");
+      } else {
+        alert("Can not delete the card");
+    }
+      }
     
       useEffect(() => {
         getSavedProducts();
@@ -41,6 +56,7 @@ function CartForm() {
                       <p>place:{savedProduct.Place}</p>
                   </div>
                   <PaymentButton cardItem={savedProduct}/>
+                  <button onClick={()=>handleDelete(savedProduct.id)}>delete</button>
                </div>
               ))}
                <PayAllButton cardItem={saveProduct}/>

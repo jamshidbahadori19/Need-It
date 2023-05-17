@@ -3,12 +3,12 @@ import {Button,Container,Form,Nav,Navbar,NavDropdown} from "react-bootstrap"
 import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
-import { useState } from "react";
+import { createRef, useState } from "react";
 import { useEffect } from "react";
 
 
 function NavScrollExample() {
-  const [cartLength, setCartLength] = useState([])
+  const [cartLength, setCartLength] = useState(0)
   let token = localStorage.getItem("token") 
   let navigate = useNavigate()
   let decoded;
@@ -94,10 +94,8 @@ function NavScrollExample() {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-            {/* <Nav.Link as={Link} to={"/user/singUp"}>signup</Nav.Link> */}
           </Form>
           
-          {/* <a to="#">{decoded ? decoded.username : null}</a> */}
           <Nav.Link as={Link} onClick={logout} to={"/user/login"}>logout</Nav.Link>
           </>
           )

@@ -5,6 +5,7 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import AddToCart from "../Buttons/AddToCart";
 import WishButton from "../Buttons/AddToWishList";
+import DeleteButton from "../Buttons/DeleteButton" 
 
 function ImgMediaCard() {
     let token = localStorage.getItem("token") 
@@ -27,7 +28,7 @@ function ImgMediaCard() {
     useEffect(()=>{
         getAllCards()
     },[])
-
+/* 
     async function deleteItem(id){
         try {
             let response = await axios.delete(`http://localhost:3000/deleteProduct/${id}`,
@@ -45,7 +46,7 @@ function ImgMediaCard() {
         } catch (error) {
         console.log("Error deleting movie");
         }
-    }
+    } */
 
 
     return ( 
@@ -65,9 +66,10 @@ function ImgMediaCard() {
                         </Link>
                         {token?(
                             <>
-                            <button onClick={()=>deleteItem(card._id)}>delete</button>
+                     {/*        <button onClick={()=>deleteItem(card._id)}>delete</button> */}
                             <WishButton cardItem={card}/>
                             <AddToCart cardItem= {card}/>
+                            <DeleteButton cardItem={card}/>
                             </>
                         ):(
                             <>

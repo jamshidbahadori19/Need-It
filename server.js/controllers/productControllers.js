@@ -18,11 +18,13 @@ const deleteProduct = async (req,res)=>{
     res.send({msg:"deleted product",delete_product})
 }
 
+
+
 //Cart controllers
 
 const addToCart = async (req,res)=>{
     try {
-        let {id,
+        let {_id:id,
             name,
             category,
             photo,
@@ -44,6 +46,7 @@ const addToCart = async (req,res)=>{
           { $addToSet: { cartBasket: addProduct } }
         );
         return res.send({ msg: "Added to cart Basket!", addProduct});
+        
       } catch (error) {
         console.error(error);
         res.status(500).send("Server Error");
@@ -61,6 +64,29 @@ const getSavedCartProducts = async (req,res)=>{
       }
 }
 
+
+const deleteCartProduct = async (req,res)=>{
+  try {
+    let productId = req.params.id;
+    let userid = req.user.userId;
+
+    let user = await User.findById(userid);
+    let allCartProducts = user.cartBasket;
+    for (let i = 0; i < allCartProducts.length; i++) {
+      if (productId === allCartProducts[i].id) {
+        await User.findOneAndUpdate(
+          { _id: userid },
+          { $pull: { cartBasket: allCartProducts[i] } }
+        );
+      }
+    }
+    res.send("product deleted successfully");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error");
+  }
+}
+
 // get specific product 
 
 const getSpecificProduct = async (req,res)=>{
@@ -72,7 +98,7 @@ const getSpecificProduct = async (req,res)=>{
 
 const SaveWishProduct = async(req,res)=>{
     try {
-        let {id,
+        let {_id:id,
             name,
             category,
             photo,
@@ -100,7 +126,7 @@ const SaveWishProduct = async(req,res)=>{
       }
 }
 
-// get the liked movies 
+// get the wished products 
 
 const getSavedProducts = async (req,res)=>{
     try {
@@ -114,5 +140,29 @@ const getSavedProducts = async (req,res)=>{
       }
 }
 
+//delete wish product
 
-module.exports = {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts}
+const deleteWishProduct = async (req,res)=>{
+  try {
+    let productId = req.params.id;
+    let userid = req.user.userId;
+
+    let user = await User.findById(userid);
+    let allWishProducts = user.wishList;
+    for (let i = 0; i < allWishProducts.length; i++) {
+      if (productId === allWishProducts[i].id) {
+        await User.findOneAndUpdate(
+          { _id: userid },
+          { $pull: { wishList: allWishProducts[i] } }
+        );
+      }
+    }
+    res.send("product deleted successfully");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error");
+  }
+}
+
+
+module.exports = {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts,getSpecificProduct,SaveWishProduct,getSavedProducts,deleteWishProduct,deleteCartProduct}

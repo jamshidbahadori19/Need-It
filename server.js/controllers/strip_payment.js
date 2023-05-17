@@ -5,6 +5,7 @@ const stripe =Strip(process.env.STRIP_key)
 
 const payment = async (req,res)=>{
 const item = req.body.cardItem
+
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {

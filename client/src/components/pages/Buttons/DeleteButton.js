@@ -22,14 +22,13 @@ function DeleteButton({cardItem}) {
               Authorization: `Bearer ${token}`,
             },
         })
-      /*   if (response.status === 200) {
-            alert("Movie deleted successfully!");
-            getAllCards()
+        if (response.status === 200) {
+            alert("Product deleted successfully!");
           } else {
             alert("Can not delete the card");
-        } */
+        }
         } catch (error) {
-        console.log("Error deleting movie");
+        console.log("Error deleting product");
         }
     }
     return ( 

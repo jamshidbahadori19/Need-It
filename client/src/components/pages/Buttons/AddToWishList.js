@@ -15,13 +15,15 @@ function WishButton({cardItem}) {
 
     async function addToWishBasket(){
         try {
-            let response = await axios.put(`http://localhost:3000/addToWishBasket`,cardItem,
-            {
+            let response = await axios.put(`http://localhost:3000/deletePro/${cardItem._id}`,cardItem
+            ,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                     },
             })
             alert(response.data.msg)
+            console.log(cardItem)
+            console.log(response.data)
         } catch (error) {
             console.error(error);
         }
