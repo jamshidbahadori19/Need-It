@@ -7,6 +7,7 @@ import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -111,6 +112,7 @@ function AuthenticationForm() {
                 label="Remember me"
               />
               <Button
+                endIcon ={<HowToRegTwoToneIcon/>}
                 type="submit"
                 fullWidth
                 variant="contained"

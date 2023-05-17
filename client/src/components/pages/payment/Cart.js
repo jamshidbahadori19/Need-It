@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PaymentButton from "./PaymentButton";
 import PayAllButton from "./PayAllButton";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 function CartForm() {
     const [saveProduct, setSaveProduct] = useState([]);
@@ -56,7 +57,7 @@ function CartForm() {
                       <p>place:{savedProduct.Place}</p>
                   </div>
                   <PaymentButton cardItem={savedProduct}/>
-                  <button onClick={()=>handleDelete(savedProduct.id)}>delete</button>
+                  <button onClick={()=>handleDelete(savedProduct.id)}><DeleteOutlineOutlinedIcon/></button>
                </div>
               ))}
                <PayAllButton cardItem={saveProduct}/>

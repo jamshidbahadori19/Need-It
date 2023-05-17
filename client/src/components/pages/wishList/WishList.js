@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteButton from "../Buttons/DeleteButton"
 import AddToCart from "../Buttons/AddToCart";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 function WishList() {
     const [saveProduct, setSaveProduct] = useState([]);
@@ -58,7 +59,7 @@ function WishList() {
                       <p>place:{savedProduct.Place}</p>
                   </div>
                   <AddToCart cardItem={savedProduct}/>
-                  <button onClick={()=>handleDelete(savedProduct.id)}>delete</button>
+                  <button onClick={()=>handleDelete(savedProduct.id)}><DeleteOutlineOutlinedIcon/></button>
                   
                </div>
               ))}
