@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 function DeleteButton({cardItem}) {
     let token = localStorage.getItem("token") 
     let decoded;
@@ -33,7 +33,7 @@ function DeleteButton({cardItem}) {
     }
     return ( 
     <>
-        <button onClick={()=>handleDelete()}>delete</button>
+        <button onClick={()=>handleDelete()}><DeleteOutlineOutlinedIcon/></button>
     </>
      );
 }

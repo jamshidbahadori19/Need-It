@@ -1,5 +1,6 @@
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 
 function WishButton({cardItem}) {
     let token = localStorage.getItem("token") 
@@ -30,7 +31,7 @@ function WishButton({cardItem}) {
     }
     return ( 
     <>
-        <button onClick={()=>addToWishBasket()}>wish it</button>
+        <button onClick={()=>addToWishBasket()}>wish<BookmarkAddOutlinedIcon/></button>
     </> );
 }
 

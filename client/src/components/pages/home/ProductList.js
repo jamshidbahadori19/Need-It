@@ -7,6 +7,7 @@ import AddToCart from "../Buttons/AddToCart";
 import WishButton from "../Buttons/AddToWishList";
 import DeleteButton from "../Buttons/DeleteButton" 
 
+
 function ImgMediaCard() {
     let token = localStorage.getItem("token") 
     let decoded;
