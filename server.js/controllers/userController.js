@@ -9,17 +9,17 @@ const jwt = require("jsonwebtoken")
 
 const createNewUser = async (req,res)=>{
     try {
-        let {username,password} = req.body
-        if(!username || !password){
-            return res.send({msg:"both username and password are required"})
+        let {email,password} = req.body
+        if(!email || !password){
+            return res.send({msg:"both email and password are required"})
         }
-        let userFound = await User.findOne({username})
+        let userFound = await User.findOne({email})
         if(userFound){
             return res.send({msg:"the user exist before please login or sign up with another gmail"})
         }else{
             let hashedPassword = await bcrypt.hash(password,salt)
             let newUser = await User.create({
-                username,
+                email,
                 password: hashedPassword
             })
             return res.send({msg:"registered successfully", newUser})
@@ -31,20 +31,20 @@ const createNewUser = async (req,res)=>{
 /* get user is for log in */
 const getUser = async (req,res)=>{
    try {
-    let {username,password} = req.body
-    if(!username || !password){
-        return res.send({msg:"both username and password are required"})
+    let {email,password} = req.body
+    if(!email || !password){
+        return res.send({msg:"both email and password are required"})
     }
-    let userFound = await User.findOne({username})
+    let userFound = await User.findOne({email})
     if(!userFound){
-        return res.send({msg:"username does not exist, please sign up first"})
+        return res.send({msg:"email does not exist, please sign up first"})
     }else{
         let validatePassword = await bcrypt.compare(password, userFound.password)
         if(!validatePassword){
-            return res.send({msg:"please enter valid a password"})
+            return res.send({msg:"please enter a valid password"})
         }else{
             let token = jwt.sign(
-                {userId: userFound._id,username:userFound.username},
+                {userId: userFound._id,email:userFound.email},
                 process.env.Private_key
            /*      { expiresIn: 60 * 60 } */
                 )

@@ -1,13 +1,13 @@
 
 
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,Grid,Typography,createTheme, ThemeProvider} from "@mui/material"
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import PasswordStrengthBar from 'react-password-strength-bar';
+/* import PasswordStrengthBar from 'react-password-strength-bar'; */
 import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
+import PostRegisterData from "./PostRegisterData";
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -22,29 +22,29 @@ function Copyright(props) {
 const theme = createTheme();
 
 function AuthenticationForm() {
-    const [username,setUserName] = useState("") 
-    const [password,setPassword] = useState("")
-    const navigate = useNavigate()
+  const emailPattern= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (userData) => {
+    reset({
+      email: "",
+      password: "",
+    });
+    await PostRegisterData(userData,emailPattern);
+   /*    navigate("/user/login") */
     
-    async function login(e){
-        try {
-            e.preventDefault()
-            let user = {username,password}
-            let response = await axios.post("http://localhost:3000/user/signUp",user);
-            if(response.data.msg==="registered successfully"){
-                alert(response.data.msg)
-                navigate("/user/login")
-            }else{
-                alert(response.data.msg)
-            }
-        } catch (error) {
-            console.log(error)
-        }
   };
 
+  
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh' }} padding={4}>
         <CssBaseline />
         <Grid
           item
@@ -52,12 +52,16 @@ function AuthenticationForm() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1539667468225-eebb663053e6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fG5hdHVyYWx8ZW58MHx8MHx8&w=1000&q=80)',
+            backgroundImage: 'url(https://img.freepik.com/free-photo/sensual-young-stylish-sexy-woman-pink-luxury-dress-summer-fashion-trend-chic-style-blue-studio-background-holding-trendy-handbag_285396-2929.jpg?w=2000)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            ":hover":{
+              transform:"scale(.9)",
+              transitionDuration: "0.5s",
+            }
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -69,44 +73,54 @@ function AuthenticationForm() {
               flexDirection: 'column',
               alignItems: 'center',
               ":hover":{
-                boxShadow:"10px 10px 10px #ccc",
+                boxShadow:"10px 10px 10px 10px #ccc",
               },
             }}
             padding={4}
             borderRadius={5}
-            boxShadow={"5px 5px 5px #ccc"}
+            boxShadow={"5px 5px 5px 5px #ccc"}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
+            <Avatar sx={{ m: 1, bgcolor: '#f6dcd9' }}>
+              <LockOutlinedIcon sx={{ m: 1, color: '#0186b9' }} />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" >
               Sign up
             </Typography>
-            <Box component="form" noValidate onSubmit={login} sx={{ mt: 1 }}>
-              <TextField
+            <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+
+              < TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                type="email"
-                onChange={(e)=> setUserName(e.target.value)}
-                autoFocus
-                
+                type='email'
+                name='email'
+                {...register("email", {
+                  required: "Email is required.",
+                  pattern: {
+                    value: emailPattern,
+                    message: "Please enter a valid email.",
+                  },
+            })}
               />
+              {errors.email && <p className='errorMsg' style={{color:"red"}}>{errors.email.message}</p>}
               <TextField 
-              
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                onChange={(e)=> setPassword(e.target.value)}
-              />
-              <PasswordStrengthBar password={password} />
+              margin="normal"
+              required
+              fullWidth
+              type='password'
+              name='password'
+              {...register("password", {
+                required: "Password is required.",
+                minLength: {
+                  value: 6,
+                  message: "Password should be at-least 5 characters.",
+              },
+            })}
+            />
+            {errors.password && (
+            <p className='errorMsg' style={{color:"red"}}>{errors.password.message}</p>
+            )}
+              {/* <PasswordStrengthBar password={password} /> */}
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"

@@ -6,10 +6,10 @@ import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LoginIcon from '@mui/icons-material/Login';
-function Copyright(props) {
+function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}{' '}
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'This is your site '}{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -19,7 +19,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 function LoginForm() {
-    const [username,setUserName] = useState("") 
+    const [email,setEmail] = useState("") 
     const [password,setPassword] = useState("")
     const navigate = useNavigate()
     let token = localStorage.getItem("token")
@@ -27,7 +27,7 @@ function LoginForm() {
     async function login(e){
         try {
             e.preventDefault()
-            let user = {username,password}
+            let user = {email,password}
             let response = await axios.post("http://localhost:3000/user/login",
             user,
             {
@@ -42,7 +42,7 @@ function LoginForm() {
                 navigate("/");
                 
             }else{
-                return
+               alert(response.data.msg)
             }
         } catch (error) {
             console.log(error)
@@ -54,7 +54,7 @@ function LoginForm() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh' }} padding={4}>
         <CssBaseline />
         <Grid
           item
@@ -62,12 +62,16 @@ function LoginForm() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__340.jpg)',
+            backgroundImage: 'url(https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-jeans-clothes-fashion-man_158538-5030.jpg?w=2000)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            ":hover":{
+              transform:"scale(.9)",
+              transitionDuration: "0.5s",
+            }
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -78,15 +82,21 @@ function LoginForm() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              ":hover":{
+                boxShadow:"10px 10px 10px 10px #ccc",
+            },
             }}
+            padding={4}
+            borderRadius={5}
+            boxShadow={"5px 5px 5px 5px #ccc"}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
+            <Avatar sx={{ m: 1, bgcolor: '#fdf3f2' }}>
+              <LockOutlinedIcon  sx={{ m: 1, color: '#0797b4' }}/>
             </Avatar>
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <Box component="form" /* noValidate */ onSubmit={login} sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={login} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -94,7 +104,7 @@ function LoginForm() {
                 id="email"
                 label="Email Address"
                 name="email"
-                onChange={(e)=> setUserName(e.target.value)}
+                onChange={(e)=> setEmail(e.target.value)}
                 autoFocus
               />
               <TextField
