@@ -3,8 +3,16 @@
 const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
-    username : String,
-    password: String,
+    email: {
+        type: String,
+        required: [true, "Please provide an Email!"],
+        unique: [true, "Email Exist"],
+      },
+      password: {
+        type: String,
+        required: [true, "Please provide a password!"],
+        unique: false,
+      },
     /* adding the favorite section */
     wishList:[],
     cartBasket:[]

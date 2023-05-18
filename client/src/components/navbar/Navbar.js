@@ -3,7 +3,7 @@ import {Button,Container,Form,Nav,Navbar,NavDropdown} from "react-bootstrap"
 import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
-import { createRef, useState } from "react";
+import {useState } from "react";
 import { useEffect } from "react";
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -55,13 +55,13 @@ function NavScrollExample() {
     <Navbar bg="light" expand="lg" className="m-3">
       <Container fluid>
         <Navbar.Brand href="#">NeedIt</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Toggle aria-controls="navbarScroll"/>
+        <Navbar.Collapse id="navbarScroll" >
         {token?(
             <>
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px', margin:"20px" }}
+            style={{ maxHeight: '100px'}}
             navbarScroll
           >
             <Nav.Link as={Link} to={"/"}><HomeOutlinedIcon/></Nav.Link>
