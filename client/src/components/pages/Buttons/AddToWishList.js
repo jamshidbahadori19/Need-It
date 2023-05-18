@@ -1,6 +1,7 @@
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import { IconButton } from '@mui/material';
 
 function WishButton({cardItem}) {
     let token = localStorage.getItem("token") 
@@ -16,22 +17,23 @@ function WishButton({cardItem}) {
 
     async function addToWishBasket(){
         try {
-            let response = await axios.put(`http://localhost:3000/deletePro/${cardItem._id}`,cardItem
+            let response = await axios.put(`http://localhost:3000/addToWishBasket/${cardItem._id}`,cardItem
             ,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                     },
             })
             alert(response.data.msg)
-            console.log(cardItem)
-            console.log(response.data)
         } catch (error) {
             console.error(error);
         }
     }
     return ( 
     <>
-        <button onClick={()=>addToWishBasket()}>wish<BookmarkAddOutlinedIcon/></button>
+  {/*       <button onClick={()=>addToWishBasket()}>wish<BookmarkAddOutlinedIcon/></button> */}
+            <IconButton aria-label="add to favorites">
+                <BookmarkAddOutlinedIcon  onClick={()=>addToWishBasket()}/>
+            </IconButton>
     </> );
 }
 

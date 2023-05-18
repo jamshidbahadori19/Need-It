@@ -1,14 +1,16 @@
 
-import Carousel from 'react-bootstrap/Carousel';
-
+import Carousel from 'react-bootstrap/Carousel'
+import "./style.css"
 function Product() {
   return (
-    <Carousel fade className='h-50'>
+    <div className='main' style={{padding:20, justifyContent:"space-evenly"}}>
+      <Carousel className='h-50 carousel' style={{width:1000}}>
       <Carousel.Item >
         <img
           className="d-block w-100"
-          src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"
+          src="https://www.ukmodels.co.uk/wp-content/uploads/2015/08/shutterstock_266498825.jpg"
           alt="First slide"
+          /* style={{height:500, objectFit:"cover"}} */
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -18,7 +20,7 @@ function Product() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"
+          src="https://www.looklet.com/hubfs/models-2%20copy.jpg"
           alt="Second slide"
         />
 
@@ -30,7 +32,7 @@ function Product() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
+          src="https://img.freepik.com/free-photo/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-black-jacket-jeans-fashion-male-posing-studio-near-grey-wall_158538-24002.jpg"
           alt="Third slide"
         />
 
@@ -42,6 +44,8 @@ function Product() {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+    </div>
+    
   );
 }
 

@@ -3,7 +3,7 @@ import Products from "./components/pages/home/Products"
 import Footer from "./components/footer/Footer";
 import { Route,Routes } from "react-router-dom";
 import ProductForm from "./components/pages/addProduct/AddProduct";
-import ImgMediaCard from "./components/pages/home/ProductList";
+import RecipeReviewCard from "./components/pages/home/ProductList";
 /* import MultiActionAreaCard from "./components/pages/home/ProductList"; */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
@@ -22,7 +22,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/productForm" element={<ProductForm/>}></Route>
-        <Route path="/" element={<><Products/><ImgMediaCard/> </>}></Route>
+        <Route path="/" element={<><Products/><RecipeReviewCard/> </>}></Route>
         <Route path="/user/signUp" element={<AuthenticationForm/>}></Route>
         <Route path="/user/login" element={<LoginForm/>}></Route>
         <Route path="/eachProduct/:id" element={<EachProduct/>}></Route>
