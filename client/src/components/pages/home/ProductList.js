@@ -1,15 +1,24 @@
 
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import { Typography } from '@mui/material';
+
 import { useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
+import "./style.css"     
 import AddToCart from "../Buttons/AddToCart";
 import WishButton from "../Buttons/AddToWishList";
 import DeleteButton from "../Buttons/DeleteButton" 
 
 
-function ImgMediaCard() {
-    let token = localStorage.getItem("token") 
+export default function RecipeReviewCard() {
+  const [cards,setCards] = useState([])
+
+  let token = localStorage.getItem("token") 
     let decoded;
 
     if (token) {
@@ -19,58 +28,56 @@ function ImgMediaCard() {
           console.log(error)
         }
       }
-    const [cards,setCards] = useState([])
+
     async function getAllCards(){
         let response = await axios.get("http://localhost:3000/getAllProducts")
-        /* console.log(response.data.get_product) */
         setCards(response.data.get_product)
     }
 
     useEffect(()=>{
         getAllCards()
     },[])
-/* 
-    async function deleteItem(id){
-        try {
-            let response = await axios.delete(`http://localhost:3000/deleteProduct/${id}`,
-        {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-        })
-        if (response.status === 200) {
-            alert("Movie deleted successfully!");
-            getAllCards()
-          } else {
-            alert("Can not delete the card");
-        }
-        } catch (error) {
-        console.log("Error deleting movie");
-        }
-    } */
 
-
-    return ( 
-        <div style={{display:"flex",justifyContent:"space-evenly", margin:10,flexWrap:"wrap"}}>
-            {cards.map((card)=>{
-                return (
-                    <div key={card._id}>
-                        <Link to={`/eachProduct/${card._id}`}>
-                        <div>{card.photo&&<img src={card.photo} alt="card" style={{width:200,height:200}} />}</div>
-                        <div>
-                            <h2>model:{card.name}</h2>
-                            <h4>price:{card.price}$</h4>
-                            <h4>Category:{card.category}</h4>
-                            <p>description:{card.description}</p>
-                            <p>place:{card.Place}</p>
-                        </div>
-                        </Link>
-                        {token?(
+  return (
+    <div className="main">
+        {cards.map((card)=>{
+            return(
+                <div className='card-container'>
+                    <Card sx={{ width: 400}} className='card'>
+                    <Link to={`/eachProduct/${card._id}`}>
+                    <CardMedia
+                        className='image'
+                        component="img"
+                        sx={{ height: 300 }}
+                        image={card.photo}
+                        alt="cardPhoto"
+                    />
+                    </Link>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                        model:{card.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        Category:{card.category}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        price:{card.price}$
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        place:{card.Place}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        description:{card.description}
+                        </Typography>
+                    </CardContent>
+                    
+                    {token?(
                             <>
-                     {/*        <button onClick={()=>deleteItem(card._id)}>delete</button> */}
-                            <WishButton cardItem={card}/>
-                            <AddToCart cardItem= {card}/>
-                            <DeleteButton cardItem={card}/>
+                                <div style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
+                                    <span><WishButton cardItem={card}/></span>
+                                    <span><AddToCart cardItem= {card}/></span>
+                                    <span><DeleteButton cardItem={card}/></span>
+                                </div>
                             </>
                         ):(
                             <>
@@ -79,12 +86,11 @@ function ImgMediaCard() {
 
                             </>
                         )}
-                       
-                        
-                    </div>
-                )
-            })}
-        </div>
-     );
+                </Card>
+                </div>
+                
+            )
+        })}
+    </div>
+  );
 }
-export default ImgMediaCard;
