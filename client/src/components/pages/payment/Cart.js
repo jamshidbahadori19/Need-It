@@ -51,6 +51,7 @@ function CartForm() {
         <div >
           {saveProduct.length > 0 && (
             <div className='main'>
+              
               {saveProduct.map((savedProduct) => (
               <div className="card-container">
                <div className='card' key={savedProduct._id} >
@@ -69,12 +70,16 @@ function CartForm() {
                   </div>
                </div>
               ))}
-               
+              
             </div>
+            
           )}
+          {saveProduct.length>0?(<>
             <div className="card-container" style={{margin:10, padding:10}}>
               <PayAllButton cardItem={saveProduct}/>
             </div>
+          </>):(<div></div>)}
+            
         </div>
      );
 }

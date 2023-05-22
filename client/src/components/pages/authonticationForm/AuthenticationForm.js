@@ -112,7 +112,7 @@ function AuthenticationForm() {
               {...register("password", {
                 required: "Password is required.",
                 minLength: {
-                  value: 6,
+                  value: 5,
                   message: "Password should be at-least 5 characters.",
               },
             })}
