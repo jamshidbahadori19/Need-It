@@ -16,34 +16,39 @@ import { Link } from "react-router-dom";
 function WishList() {
     const [saveProduct, setSaveProduct] = useState([]);
     let token = localStorage.getItem("token");
-  
     const navigate = useNavigate();
-
     async function getSavedProducts() {
 
         if (!token) {
           return navigate("/login");
         }
+
         let response = await axios.get("http://localhost:3000/getSavedProduct", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setSaveProduct(response.data);
+        console.log(response.data)
       }
 
       async function handleDelete(id){
-        let response = await axios.delete(`http://localhost:3000/deleteWishProduct/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-      })
-      if (response.status === 200) {
-        alert("Product deleted successfully!");
-      } else {
-        alert("Can not delete the card");
-    }
+        let confirmation = window.confirm("Are you sure that you want to logout?")
+        if(confirmation){
+          let response = await axios.delete(`http://localhost:3000/deleteWishProduct/${id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+            })
+            if (response.status === 200) {
+              alert("Product deleted successfully!");
+              getSavedProducts();
+            } else {
+              alert("Can not delete the card");
+          }
+        }
+        
       }
     
       useEffect(() => {
@@ -51,37 +56,14 @@ function WishList() {
       }, []);
     
       return (
-        /* <div>
-          {saveProduct.length > 0 && (
-            <div className='saved-product' key={saveProduct.id}>
-              {saveProduct.map((savedProduct) => (
-               <div className='saved-product-item' key={savedProduct.id}>
-                <div><img src={savedProduct.photo} alt="card" style={{width:200,height:200}} /></div>
-                  <div>
-                      <h2>model:{savedProduct.name}</h2>
-                      <h4>price:{savedProduct.price}$</h4>
-                      <h4>Category:{savedProduct.category}</h4>
-                      <p>description:{savedProduct.description}</p>
-                      <p>place:{savedProduct.Place}</p>
-                  </div>
-                  <AddToCart cardItem={savedProduct}/>
-                  <IconButton aria-label="delete" onClick={()=>handleDelete(savedProduct.id)}>
-                      <DeleteOutlineOutlinedIcon/>
-                  </IconButton>
-                  
-               </div>
-              ))}
-            </div>
-          )}
-        </div> */
         <div>
           {saveProduct.length > 0 &&(
-          <div className='saved-product' key={saveProduct.id}>
+          <div className='main' key={saveProduct.id}>
           {saveProduct.map((savedProduct)=>{
             return (
               <div className='card-container' key={savedProduct.id}>
                 <Card sx={{ width: 400, display:"flex"}} className='card'>
-                  <Link to={`/eachProduct/${savedProduct.id}`}>
+                  <Link to={`/eachProduct/${saveProduct.id}`}>
                   <CardMedia
                       className='image'
                       component="img"
@@ -110,7 +92,7 @@ function WishList() {
                   
                   {token?(
                           <>
-                              <div style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
+                              <div className="main">
                                   <span><AddToCart cardItem={savedProduct}/></span>
                                   <span>  <IconButton aria-label="delete" onClick={()=>handleDelete(savedProduct.id)}>
                                               <DeleteOutlineOutlinedIcon/>

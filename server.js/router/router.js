@@ -4,10 +4,12 @@ const {getAllProducts,createProduct,deleteProduct,addToCart,getSavedCartProducts
 const {createNewUser,getUser, getAllUsers} = require("../controllers/userController")
 const verifyToken = require("../middleware/auth")
 const {payment,payAllProducts} = require("../controllers/strip_payment")
+
 /* product router */
 router.get("/getAllProducts",getAllProducts)
 router.post("/createProduct",verifyToken,createProduct)
 router.delete("/deleteProduct/:id",verifyToken,deleteProduct) 
+
 //get single product 
 router.get("/getSpecificProduct/:id",getSpecificProduct)
 

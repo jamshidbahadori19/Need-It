@@ -20,11 +20,10 @@
     background: rgba(255, 255, 255, 0.18);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.6px);
-    -webkit-backdrop-filter: blur(3.6px);
     border: 1px solid rgba(255, 255, 255, 0.28);
     margin:5px;
     transition: .5s all ease-in-out;
+    align-items: center;
 }
 .card-container:hover{
     background: rgba(147, 56, 56, 0.5);
@@ -35,6 +34,14 @@
     object-fit: contain;
     padding: 5px;
 }
+
+.card_button {
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+
+
 .carousel{
     box-shadow: 2px 2px 12px #c0aeae;
     transition: 1s all ease-in-out;

@@ -48,9 +48,15 @@ function LoginForm() {
             console.log(error)
         }
   };
-  function handleSavingData(){
-    return "you saved it"
-  }
+/*   function handleSavingData(){
+    if(remember){ 
+      localStorage.setItem("token", remember) 
+    }else{
+      sessionStorage.setItem('token', token);
+    }
+    setRemember(token)
+    console.log(token)
+  } */
 
   return (
     <ThemeProvider theme={theme}>
@@ -119,7 +125,7 @@ function LoginForm() {
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me" onClick={handleSavingData}
+                label="Remember me" /* onClick={handleSavingData} */
               />
               <Button
                 endIcon={<LoginIcon/>} 

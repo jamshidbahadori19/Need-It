@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {Button,Col,Form,InputGroup,Row} from "react-bootstrap"
 import axios from 'axios'
 import {useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
+import storage from '../../fireBase/FireBase';
+import { ref,uploadBytes,getDownloadURL } from 'firebase/storage';
+import {v4} from "uuid"
 
 function ProductForm() {
   const[name,setName]=useState("")
   const[category,setCategory] = useState("")
-  const[image,setImage]=useState("") 
+  const[image,setImage]=useState("")
   const[description,setDescription]=useState("")
   const[price,setPrice]=useState("")
   const[place,setPlace] = useState("")
+  const [validated, setValidated] = useState(false);
 
   let token = localStorage.getItem("token") 
   let navigate = useNavigate()
@@ -19,15 +23,22 @@ function ProductForm() {
   if (token) {
     try {
       decoded = jwt_decode(token);
-      console.log(decoded)
     } catch (error) {
       navigate("/user/login");
     }
   }
 
+/*   const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
-  async function addProduct(e){
-      e.preventDefault()
+    setValidated(true);
+  }; */
+
+  async function handleSubmit(e){
       let addProduct = {
         name : name,
         category:category,
@@ -36,20 +47,35 @@ function ProductForm() {
         price:price,
         Place:place,
       }
-      let response = await axios.post("http://localhost:3000/createProduct",
-      addProduct,{
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      })
-      .then((res)=>alert(res.data.msg))
-      
+      const form = e.currentTarget;
+      if (form.checkValidity() === false) {
+        e.preventDefault();
+        e.stopPropagation();
+      } 
+      setValidated(true)
+        if(validated== true){
+        let response = await axios.post("http://localhost:3000/createProduct",
+        addProduct,{
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        },)
+        .then((res)=>alert(res.data.msg))
+      }
   }
 
 
+   const handleImageUpload = async()=>{
+    const imageRef = ref(storage, `images/${image.name + v4()}`)
+    const snapShot = await uploadBytes(imageRef,image)
+    const url = await getDownloadURL(snapShot.ref)
+    setImage(url)
+    console.log(url)
+  }
 
   return (
-    <Form noValidate onSubmit={addProduct}>
+    <div>
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
       {token?(<>
         <Row className="mb-3" >
         <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -61,18 +87,16 @@ function ProductForm() {
             value={name}
             onChange={(e)=>setName(e.target.value)}
           />
+  
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+              Please choose a name.
+            </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
           <Form.Label>category</Form.Label>
-          {/* <Form.Control
-            required
-            type="text"
-            placeholder="category"
-            value={category}
-            onChange={(e)=>setCategory(e.target.value)}
-          /> */}
           <Form.Select required value={category} onChange={(e)=>setCategory(e.target.value)}>
+          <option disabled>Choose</option>
             <option>shirt</option>
             <option>Jeans</option>
             <option>T-shirt</option>
@@ -82,16 +106,17 @@ function ProductForm() {
         <Form.Group as={Col} md="4" controlId="validationCustomUsername">
           <Form.Label>photo</Form.Label>
           <InputGroup hasValidation>
-            {/* <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text> */}
             <Form.Control
-              type="text"
+             required
+              type="file"
               placeholder="photo Url"
-              required
-              value={image}
-              onChange={(e)=>setImage(e.target.value)}
+              name="picture"
+              onChange={(e)=>setImage(e.target.files[0])}
             />
+        <Button onClick={handleImageUpload}>addingPhoto</Button>
+        <Form.Control.Feedback>remember to click on the addingPhoto!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Please choose an image.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
@@ -99,26 +124,26 @@ function ProductForm() {
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustom03">
           <Form.Label>description</Form.Label>
-          <Form.Control type="text" placeholder="description your product" required value={description}
+          <Form.Control  required type="text" placeholder="description your product" value={description}
             onChange={(e)=>setDescription(e.target.value)}/>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
+            Please provide description.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="validationCustom04">
           <Form.Label>Price</Form.Label>
-          <Form.Control type="price" placeholder="Price in kr" required  value={price}
+          <Form.Control required type="price" placeholder="Price in kr"  value={price}
             onChange={(e)=>setPrice(e.target.value)} />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
+            Please set a Price.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="validationCustom05">
           <Form.Label>Place</Form.Label>
-          <Form.Control type="text" placeholder="place" required   value={place}
+          <Form.Control required  type="text" placeholder="place" value={place}
             onChange={(e)=>setPlace(e.target.value)}/>
           <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
+            Please provide a place.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
@@ -138,6 +163,7 @@ function ProductForm() {
       </>)}
       
     </Form> 
+    </div>
   );
 }
 

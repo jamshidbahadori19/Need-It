@@ -14,7 +14,7 @@ function CartForm() {
     async function getSavedProducts() {
 
         if (!token) {
-          return navigate("/login");
+          return navigate("/user/login");
         }
         let response = await axios.get("http://localhost:3000/getCartProducts", {
           headers: {
@@ -26,29 +26,35 @@ function CartForm() {
 
 
       async function handleDelete(id){
-        let response = await axios.delete(`http://localhost:3000/deleteCartProduct/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-      })
-      if (response.status === 200) {
-        alert("Product deleted successfully!");
-      } else {
-        alert("Can not delete the card");
-    }
-      }
+        let confirmation = window.confirm("Are you sure that you want to logout?")
+        if(confirmation){
+          let response = await axios.delete(`http://localhost:3000/deleteCartProduct/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+            if (response.status === 200) {
+              alert("Product deleted successfully!");
+              getSavedProducts();
+            } else {
+              alert("Can not delete the card");
+          }
+            }
+        }
+        
     
       useEffect(() => {
-        getSavedProducts();
+          getSavedProducts();
       }, []);
     return ( 
-        <div>
+        <div >
           {saveProduct.length > 0 && (
-            <div className='saved-product'>
+            <div className='main'>
               {saveProduct.map((savedProduct) => (
-               <div className='saved-product-item' key={savedProduct._id}>
-                <div><img src={savedProduct.photo} alt="card" style={{width:200,height:200}} /></div>
+              <div className="card-container">
+               <div className='card' key={savedProduct._id} >
+                <div><img src={savedProduct.photo} alt="card" style={{width:400,height:400}} className='image' /></div>
                   <div>
                       <h2>model:{savedProduct.name}</h2>
                       <h4>price:{savedProduct.price}$</h4>
@@ -56,13 +62,19 @@ function CartForm() {
                       <p>description:{savedProduct.description}</p>
                       <p>place:{savedProduct.Place}</p>
                   </div>
+                  <div>
                   <PaymentButton cardItem={savedProduct}/>
-                  <button onClick={()=>handleDelete(savedProduct.id)}><DeleteOutlineOutlinedIcon/></button>
+                  <button style={{width:400,color:"white",background:"#D10000"}} onClick={()=>handleDelete(savedProduct.id)}><DeleteOutlineOutlinedIcon/></button>
+                  </div>
+                  </div>
                </div>
               ))}
-               <PayAllButton cardItem={saveProduct}/>
+               
             </div>
           )}
+            <div className="card-container" style={{margin:10, padding:10}}>
+              <PayAllButton cardItem={saveProduct}/>
+            </div>
         </div>
      );
 }

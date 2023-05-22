@@ -17,7 +17,7 @@ const PaymentButton = ({cardItem})=>{
     
     return (
         <div>
-            <button onClick={()=>handleCheckout()}>checkout</button>
+            <button style={{width:400,color:"white", background:"#004369"}} className="checkOut-Button" onClick={()=>handleCheckout()}>checkout</button>
         </div>
     )
 }

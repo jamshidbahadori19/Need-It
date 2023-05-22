@@ -3,8 +3,9 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { IconButton } from '@mui/material';
+import { useEffect } from "react";
 
-function DeleteButton({cardItem}) {
+function DeleteButton({cardItem,props}) {
     let token = localStorage.getItem("token") 
     let decoded;
 
@@ -26,6 +27,7 @@ function DeleteButton({cardItem}) {
         })
         if (response.status === 200) {
             alert("Product deleted successfully!");
+            props()
           } else {
             alert("Can not delete the card");
         }
@@ -33,11 +35,11 @@ function DeleteButton({cardItem}) {
         console.log("Error deleting product");
         }
     }
+
     return ( 
     <>
-        {/* <button onClick={()=>handleDelete()}><DeleteRoundedIcon/></button> */}
-        <IconButton aria-label="delete">
-            <DeleteRoundedIcon  onClick={()=>handleDelete()}/>
+        <IconButton aria-label="delete"  onClick={()=>handleDelete()}>
+            <DeleteRoundedIcon />
         </IconButton>
     </>
      );

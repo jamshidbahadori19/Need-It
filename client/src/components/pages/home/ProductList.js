@@ -42,7 +42,7 @@ export default function RecipeReviewCard() {
     <div className="main">
         {cards.map((card)=>{
             return(
-                <div className='card-container'>
+                <div className='card-container' key={card._id}>
                     <Card sx={{ width: 400}} className='card'>
                     <Link to={`/eachProduct/${card._id}`}>
                     <CardMedia
@@ -73,10 +73,10 @@ export default function RecipeReviewCard() {
                     
                     {token?(
                             <>
-                                <div style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap"}}>
-                                    <span><WishButton cardItem={card}/></span>
+                                <div className='card_button'>
+                                    <span><WishButton cardItem={card} /></span>
                                     <span><AddToCart cardItem= {card}/></span>
-                                    <span><DeleteButton cardItem={card}/></span>
+                                    <span><DeleteButton cardItem={card} props={()=>getAllCards()}/></span>
                                 </div>
                             </>
                         ):(

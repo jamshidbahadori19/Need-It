@@ -30,7 +30,7 @@ function EachProduct(props) {
     return (
         <div>
         {token?(<>
-            <div style={{display:"flex",justifyContent:"space-evenly", margin:10,flexWrap:"wrap"}}>
+            <div className="main" style={{justifyContent:"space-around"}}>
             <div><img src={cards.photo} alt="card" style={{width:200,height:200}} /></div>
             <div>
                 <h2>model:{cards.name}</h2>

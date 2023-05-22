@@ -31,8 +31,8 @@ function WishButton({cardItem}) {
     return ( 
     <>
   {/*       <button onClick={()=>addToWishBasket()}>wish<BookmarkAddOutlinedIcon/></button> */}
-            <IconButton aria-label="add to favorites">
-                <BookmarkAddOutlinedIcon  onClick={()=>addToWishBasket()}/>
+            <IconButton aria-label="add to favorites" onClick={()=>addToWishBasket()}>
+                <BookmarkAddOutlinedIcon/>
             </IconButton>
     </> );
 }
