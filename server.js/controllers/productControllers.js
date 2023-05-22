@@ -106,7 +106,7 @@ const SaveWishProduct = async(req,res)=>{
             price,
             Place, } = req.body;
         let wishedProduct = {
-            id,
+          id,
             name,
             category,
             photo,
@@ -119,7 +119,7 @@ const SaveWishProduct = async(req,res)=>{
           { _id: productId },
           { $addToSet: { wishList: wishedProduct } }
         );
-        return res.send({ msg: "Added to wish Basket!", wishedProduct});
+        return res.send({ msg: "Added to wish Basket!",wishedProduct});
       } catch (error) {
         console.error(error);
         res.status(500).send("Server Error");

@@ -15,8 +15,8 @@ const PayAllButton = ({cardItem})=>{
     }
     
     return (
-        <div>
-            <button onClick={()=>handleCheckout()}>checkout-All</button>
+        <div style={{display:"flex",justifyContent:"center", alignContent:"center"}}>
+            <button style={{alignItems:"center","width" : "100%",color:"black",fontSize:22,borderRadius:30,border:"1px solid green",padding:12, background:"#8eb1de"}} onClick={()=>handleCheckout()}>checkout-All</button>
         </div>
     )
 }

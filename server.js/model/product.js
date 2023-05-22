@@ -3,12 +3,12 @@
 const mongoose = require("mongoose")
 
 const ProductSchema = new mongoose.Schema({
-    name : String,
+    name : {type:String, require:[true, "Please provide a name"]},
     category:[],
-    photo: String,
-    description: String,
-    price:Number,
-    Place:String
+    photo: {type:String, require:[true, "Please provide an image"]},
+    description: {type:String, require:[true, "Please provide a description"]},
+    price:{type:String, require:[true, "Please provide a price"]},
+    Place:{type:String, require:[true, "Please provide a place"]}
 })
 
 const Product = mongoose.model("Product",ProductSchema)
