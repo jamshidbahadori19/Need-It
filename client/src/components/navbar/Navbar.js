@@ -60,13 +60,13 @@ function NavScrollExample() {
         {token?(
             <>
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="me-auto my-2 my-lg-1"
             style={{ maxHeight: '100px'}}
             navbarScroll
           >
             <Nav.Link as={Link} to={"/"}><HomeOutlinedIcon/></Nav.Link>
             <Nav.Link as={Link} to={"productForm"}><AddOutlinedIcon/> Products</Nav.Link>
-            <NavDropdown title="Category" id="navbarScrollingDropdown">
+            <NavDropdown title="Category" id="navbarScrollingDropdown" disabled>
               <NavDropdown.Item href="#action3">Shirt</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                Jeans
@@ -75,14 +75,14 @@ function NavScrollExample() {
                 T-shirt
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#" disabled>
+            {/* <Nav.Link href="#" disabled>
               Link
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link  as={Link} to={"/wishList"} >Wish-List<BookmarkAddedOutlinedIcon/></Nav.Link>
             <Button as={Link} to={"/cartForm"} style={{ width: "3rem", height: "3rem", position: "relative" }}
             variant="outline-primary"
             className="rounded-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"-12"}} width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"-12"}} width="30" height="30" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg> 
               <div className="rounded-circle bg-danger d-flex justify-content-center align-item-center"
                 style={{color:"white",width:"1.5rem",height:"1rem",position:"absolute", bottom:0, right:0, transform:"translate(25%,25%)"}}>

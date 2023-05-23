@@ -6,9 +6,9 @@
 
 .main{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
     flex-wrap: wrap;
-    margin: 5px;
+    margin: 1rem;
 }
 
 .card-container{
@@ -35,12 +35,24 @@
     padding: 5px;
 }
 
+.card-content{
+    display: grid;
+    justify-content: center;
+    width: 30rem;
+    height: 20rem;
+}
+
 .card_button {
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     flex-wrap: wrap;
 }
 
+.card{
+    display: grid;
+    width:30rem;
+    height: 30rem;
+}
 
 .carousel{
     box-shadow: 2px 2px 12px #c0aeae;

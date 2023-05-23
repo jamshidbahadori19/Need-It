@@ -48,7 +48,7 @@ export default function RecipeReviewCard() {
                     <CardMedia
                         className='image'
                         component="img"
-                        sx={{ height: 300 }}
+                        sx={{ height: 300,"width":"100%" }}
                         image={card.photo}
                         alt="cardPhoto"
                     />

@@ -11,7 +11,6 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
-import { Link } from "react-router-dom";
 
 function WishList() {
     const [saveProduct, setSaveProduct] = useState([]);
@@ -29,7 +28,6 @@ function WishList() {
           },
         });
         setSaveProduct(response.data);
-        console.log(response.data)
       }
 
       async function handleDelete(id){
@@ -56,45 +54,46 @@ function WishList() {
       }, []);
     
       return (
-        <div>
+        <div key={saveProduct.id}>
+          <h1>My Wishes</h1>
           {saveProduct.length > 0 &&(
           <div className='main' key={saveProduct.id}>
           {saveProduct.map((savedProduct)=>{
             return (
-              <div className='card-container' key={savedProduct.id}>
-                <Card sx={{ width: 400, display:"flex"}} className='card'>
-                  <Link to={`/eachProduct/${saveProduct.id}`}>
+              <div className='main' key={savedProduct.id}>
+                <Card sx={{ display:"flex"}} className='card'>
                   <CardMedia
                       className='image'
                       component="img"
-                      sx={{ height: 300 }}
+                      sx={{ "height": "30rem", "width":"30rem"}}
                       image={savedProduct.photo}
                       alt="cardPhoto"
                   />
-                  </Link>
-                  <CardContent>
+                  </Card>
+                  <Card>
+                  <CardContent className="card-content">
                       <Typography gutterBottom variant="h5" component="div">
                       model:{savedProduct.name}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography color="text.secondary">
                       Category:{savedProduct.category}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography color="text.secondary">
                       price:{savedProduct.price}$
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography color="text.secondary">
                       place:{savedProduct.Place}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography color="text.secondary">
                       description:{savedProduct.description}
                       </Typography>
                   </CardContent>
                   
                   {token?(
                           <>
-                              <div className="main">
+                              <div className="main" style={{display:"grid"}}>
                                   <span><AddToCart cardItem={savedProduct}/></span>
-                                  <span>  <IconButton aria-label="delete" onClick={()=>handleDelete(savedProduct.id)}>
+                                  <span>  <IconButton aria-label="delete" sx={{ backgroundColor:"red",borderRadius:0,"width":"16.2rem"}} onClick={()=>handleDelete(savedProduct.id)}>
                                               <DeleteOutlineOutlinedIcon/>
                                           </IconButton>
                                   </span> 

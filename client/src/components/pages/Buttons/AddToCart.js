@@ -6,7 +6,7 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 function AddToCart({cardItem}) {
 /*     const [color, setColor] = useState("blue") */
     const handleStyling ={
-        width: '40vh',
+        width: '16.2rem',
         background:"blue",
         color:"black"
     }

@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,Grid,Typography,createTheme, ThemeProvider} from "@mui/material"
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-/* import PasswordStrengthBar from 'react-password-strength-bar'; */
 import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
 import PostRegisterData from "./PostRegisterData";
 function Copyright(props) {
