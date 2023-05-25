@@ -3,6 +3,8 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import { Button } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import {NotificationManager,NotificationContainer} from 'react-notifications';
+
 function AddToCart({cardItem}) {
 /*     const [color, setColor] = useState("blue") */
     const handleStyling ={
@@ -10,12 +12,6 @@ function AddToCart({cardItem}) {
         background:"blue",
         color:"black"
     }
-/*    const click = color =>{
-    setColor(color)
-   }
-   useEffect(()=>{
-    document.getElementsByClassName('.addToCartButton').background= color
-   },[color]) */
 
     async function handleAdding(){
         let token = localStorage.getItem("token") 
@@ -36,14 +32,22 @@ function AddToCart({cardItem}) {
                     Authorization: `Bearer ${token}`,
                     },
             })
-            alert(response.data.msg)
+            if (response.status === 200) {
+                NotificationManager.success('added to the cart basket','Close after 2000ms',2000);
+              } else {
+                NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                  alert('callback');
+                });
+            }
+
         } catch (error) {
             console.error(error);
         }
     }
     return ( 
         <>
-            <Button className='addToCartButton' style={handleStyling} endIcon={<AddShoppingCartOutlinedIcon/>} onClick={()=>{handleAdding(); /* click("yellow") */ }}>addToCart</Button>
+            <Button className='addToCartButton' style={handleStyling} endIcon={<AddShoppingCartOutlinedIcon/>} onClick={()=>handleAdding()}>addToCart</Button>
+            <NotificationContainer/>
         </>
      );
 }

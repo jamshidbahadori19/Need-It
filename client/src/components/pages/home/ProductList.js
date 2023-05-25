@@ -15,6 +15,7 @@ import WishButton from "../Buttons/AddToWishList";
 import DeleteButton from "../Buttons/DeleteButton" 
 
 
+
 export default function RecipeReviewCard() {
   const [cards,setCards] = useState([])
 
@@ -88,7 +89,7 @@ export default function RecipeReviewCard() {
                         )}
                 </Card>
                 </div>
-                
+
             )
         })}
     </div>

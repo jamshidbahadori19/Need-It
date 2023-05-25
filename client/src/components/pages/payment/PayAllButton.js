@@ -1,6 +1,5 @@
 import axios from "axios"
 /* import {Button} from "bootstrap" */
-
 const checkoutButton = {
     alignItems:"center",
     width : "100%",
@@ -27,7 +26,7 @@ const PayAllButton = ({cardItem})=>{
     
     return (
         <div style={{display:"flex",justifyContent:"center", alignContent:"center"}}>
-            <button style={checkoutButton} onClick={()=>handleCheckout()}>checkout-All</button>
+            <button style={checkoutButton} onClick={()=>handleCheckout()}>Buy All</button>
         </div>
     )
 }

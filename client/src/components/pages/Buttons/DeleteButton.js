@@ -3,7 +3,8 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { IconButton } from '@mui/material';
-import { useEffect } from "react";
+import {NotificationContainer,NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 function DeleteButton({cardItem,props}) {
     let token = localStorage.getItem("token") 
@@ -17,6 +18,17 @@ function DeleteButton({cardItem,props}) {
         }
       }
 
+      async function handleNotification(response){
+        if(response=="deleted product"){
+            NotificationManager.success('deleted');
+            props()
+        }else{
+            NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                alert('callback');
+              });
+        }
+       }
+
     async function handleDelete(){
         try {
             let response = await axios.delete(`http://localhost:3000/deleteProduct/${cardItem._id}`,
@@ -25,12 +37,7 @@ function DeleteButton({cardItem,props}) {
               Authorization: `Bearer ${token}`,
             },
         })
-        if (response.status === 200) {
-            alert("Product deleted successfully!");
-            props()
-          } else {
-            alert("Can not delete the card");
-        }
+        handleNotification(response.data.msg)
         } catch (error) {
         console.log("Error deleting product");
         }
