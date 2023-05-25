@@ -5,12 +5,14 @@ import axios from "axios";
 import { Box, IconButton } from "@mui/material";
 import AddToCart from "../Buttons/AddToCart";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import {NotificationManager,NotificationContainer} from 'react-notifications';
 
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
+
 
 function WishList() {
     const [saveProduct, setSaveProduct] = useState([]);
@@ -29,9 +31,9 @@ function WishList() {
         });
         setSaveProduct(response.data);
       }
-
+      
       async function handleDelete(id){
-        let confirmation = window.confirm("Are you sure that you want to logout?")
+        let confirmation = window.confirm("Are you sure that you want to delete?")
         if(confirmation){
           let response = await axios.delete(`http://localhost:3000/deleteWishProduct/${id}`,
               {
@@ -40,7 +42,7 @@ function WishList() {
                 },
             })
             if (response.status === 200) {
-              alert("Product deleted successfully!");
+              NotificationManager.success('deleted successfully','Close after 2000ms',2000)
               getSavedProducts();
             } else {
               alert("Can not delete the card");
@@ -88,7 +90,7 @@ function WishList() {
                       description:{savedProduct.description}
                       </Typography>
                   </CardContent>
-                  
+                  <NotificationContainer/>
                   {token?(
                           <>
                               <div className="main" style={{display:"grid"}}>

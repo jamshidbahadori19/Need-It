@@ -2,6 +2,8 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import { IconButton } from '@mui/material';
+import {NotificationContainer,NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 function WishButton({cardItem}) {
     let token = localStorage.getItem("token") 
@@ -23,7 +25,13 @@ function WishButton({cardItem}) {
                     Authorization: `Bearer ${token}`,
                     },
             })
-            alert(response.data.msg)
+            if (response.status === 200) {
+                NotificationManager.success("Added to wish Basket!",'Close after 2000ms',2000);
+              } else {
+                NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                  alert('callback');
+                });
+            }
         } catch (error) {
             console.error(error);
         }
@@ -34,6 +42,7 @@ function WishButton({cardItem}) {
             <IconButton aria-label="add to favorites" onClick={()=>addToWishBasket()}>
                 <BookmarkAddOutlinedIcon/>
             </IconButton>
+            <NotificationContainer/>
     </> );
 }
 

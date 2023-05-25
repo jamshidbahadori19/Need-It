@@ -6,6 +6,9 @@ import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LoginIcon from '@mui/icons-material/Login';
+import { NotificationContainer,NotificationManager } from "react-notifications";
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -38,14 +41,13 @@ function LoginForm() {
           );
             if(response.data.msg==="welcome"){
               localStorage.setItem("token", response.data.token);
-                alert("welcome")
-                navigate("/");
-                
+              navigate("/");
             }else{
-               alert(response.data.msg)
+              NotificationManager.warning(response.data.msg,'Close after 3000ms',3000)
+
             }
         } catch (error) {
-            console.log(error)
+          NotificationManager.error('Error message', 'Click me!', 5000);
         }
   };
 /*   function handleSavingData(){
@@ -152,6 +154,7 @@ function LoginForm() {
             </Box>
           </Box>
         </Grid>
+        <NotificationContainer/>
       </Grid>
     </ThemeProvider>
   );

@@ -6,6 +6,7 @@ import PaymentButton from "./PaymentButton";
 import PayAllButton from "./PayAllButton";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import "./payment.css"
+import {NotificationManager,NotificationContainer} from 'react-notifications';
 
 function CartForm() {
     const [saveProduct, setSaveProduct] = useState([]);
@@ -36,10 +37,12 @@ function CartForm() {
             },
           });
             if (response.status === 200) {
-              alert("Product deleted successfully!");
+              NotificationManager.success('deleted successfully','Close after 2000ms',2000)
               getSavedProducts();
             } else {
-              alert("Can not delete the card");
+              NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                alert('callback');
+              });
           }
             }
         }
@@ -75,6 +78,7 @@ function CartForm() {
                     </div>
                   </div>
                   </div>
+                  <NotificationContainer/>
               </div>
               ))}
             </div>

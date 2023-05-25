@@ -1,12 +1,15 @@
 
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel,Checkbox,Paper,Box,Grid,Typography,createTheme, ThemeProvider} from "@mui/material"
 import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
 import PostRegisterData from "./PostRegisterData";
+/* import { useNavigate } from "react-router-dom"; */
+import { NotificationContainer } from "react-notifications";
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -21,6 +24,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 function AuthenticationForm() {
+/*   const navigate = useNavigate() */
   const emailPattern= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
   const {
@@ -35,9 +39,11 @@ function AuthenticationForm() {
       email: "",
       password: "",
     });
-    await PostRegisterData(userData,emailPattern);
-   /*    navigate("/user/login") */
-    
+    const posted = await PostRegisterData(userData,emailPattern);
+
+   /*  if(posted){
+      navigate("/user/login")
+    } */
   };
 
   
@@ -149,6 +155,7 @@ function AuthenticationForm() {
             </Box>
           </Box>
         </Grid>
+        <NotificationContainer/>
       </Grid>
     </ThemeProvider>
   );

@@ -92,9 +92,10 @@ function ProductForm() {
         <Form.Group as={Col} md="8" controlId="validationCustom02" className='formGroup'>
           <Form.Label className='formLabel'>category</Form.Label>
           <Form.Select required value={category} onChange={(e)=>setCategory(e.target.value)}>
-            <option>shirt</option>
             <option>Jeans</option>
+            <option>Shirt</option>
             <option>T-shirt</option>
+            <option>Hoodies</option>
           </Form.Select>
         </Form.Group>
         <Form.Group as={Col} md="8" controlId="validationCustomUsername" className='formGroup'>
