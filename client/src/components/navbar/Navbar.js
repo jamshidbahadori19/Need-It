@@ -5,10 +5,7 @@ import jwt_decode from "jwt-decode"
 import axios from "axios";
 import {useState } from "react";
 import { useEffect } from "react";
-import LogoutIcon from '@mui/icons-material/Logout';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import BookmarkAddedOutlinedIcon from '@mui/icons-material/BookmarkAddedOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';  
 
 function NavScrollExample() {
   const [cartLength, setCartLength] = useState(0)
@@ -64,22 +61,11 @@ function NavScrollExample() {
             style={{ maxHeight: '100px'}}
             navbarScroll
           >
-            <Nav.Link as={Link} to={"/"}><HomeOutlinedIcon/></Nav.Link>
-            <Nav.Link as={Link} to={"productForm"}><AddOutlinedIcon/> Products</Nav.Link>
-            <NavDropdown title="Category" id="navbarScrollingDropdown" disabled>
-              <NavDropdown.Item href="#action3">Shirt</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-               Jeans
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action5">
-                T-shirt
-              </NavDropdown.Item>
-            </NavDropdown>
-            {/* <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
-            <Nav.Link  as={Link} to={"/wishList"} >Wish-List<BookmarkAddedOutlinedIcon/></Nav.Link>
-            <Button as={Link} to={"/cartForm"} style={{ width: "3rem", height: "3rem", position: "relative" }}
+            <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
+            <Nav.Link as={Link} to={"productForm"}>Add Products</Nav.Link>
+            <Nav.Link  as={Link} to={"/wishList"} >Wish-List</Nav.Link>
+          </Nav>
+          <Button as={Link} to={"/cartForm"} style={{ width: "3rem", height: "3rem", position: "relative" }}
             variant="outline-primary"
             className="rounded-circle">
               <svg xmlns="http://www.w3.org/2000/svg" style={{marginLeft:"-12"}} width="30" height="30" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
@@ -89,29 +75,23 @@ function NavScrollExample() {
                   {cartLength}
                 </div>
             </Button>
-          </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-          
           <Nav.Link as={Link} onClick={logout}><LogoutIcon/></Nav.Link>
           </>
           )
           :
           (
           <>
+          <Nav
+            className="me-auto my-2 my-lg-1"
+            style={{ maxHeight: '100px'}}
+            navbarScroll
+          >
             <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
-            <Nav.Link disabled>Add Products</Nav.Link>
-            <NavDropdown title="Category" id="navbarScrollingDropdown" disabled></NavDropdown>
+            <Nav.Link disabled>Add Products</Nav.Link>  
             <Nav.Link disabled>favorites</Nav.Link>
-            <Nav.Link as={Link} to={"/user/signUp"}>signup</Nav.Link>
-            <Nav.Link as={Link} to={"/user/login"}>login</Nav.Link>
+          </Nav>
+          <Nav.Link as={Link} to={"/user/signUp"}>signup</Nav.Link>
+          <Nav.Link as={Link} to={"/user/login"}>login</Nav.Link>
           </>
           )}
           

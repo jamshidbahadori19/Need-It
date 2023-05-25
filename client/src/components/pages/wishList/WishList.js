@@ -60,7 +60,7 @@ function WishList() {
           <div className='main' key={saveProduct.id}>
           {saveProduct.map((savedProduct)=>{
             return (
-              <div className='main' key={savedProduct.id}>
+              <div className='main' style={{"box-shadow": "rgb(38, 57, 77) 0px 20px 30px -10px"}} key={savedProduct.id}>
                 <Card sx={{ display:"flex"}} className='card'>
                   <CardMedia
                       className='image'

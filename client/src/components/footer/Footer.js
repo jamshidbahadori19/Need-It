@@ -5,23 +5,14 @@ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-k
 
 function Footer() {
   return (
-    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
+    <div style={{"box-shadow": "rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset"}}>
+    <MDBFooter /* bgColor='light' */ className='text-center text-lg-start text-muted' style={{"marginTop":"30vh"}}>
       <section className='d-flex p-4 border-bottom'>
-        <div className='me-5 d-none d-lg-block'>
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <div>
-          <a href='https://www.linkedin.com/in/jamshid-bahadori/' className='me-4 text-reset'>
-           linkedin
-          </a>
-          <a href='https://github.com/jamshidbahadori19' className='me-4 text-reset'>
-            github
-          </a>
-        </div>
+
       </section>
 
-      <section className=''>
-        <MDBContainer className='text-center text-md-start mt-5'>
+      <section >
+        <MDBContainer className='text-center text-md-start mt-2' style={{"box-shadow":" rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset"}}>
           <MDBRow className='mt-3'>
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
@@ -84,24 +75,27 @@ function Footer() {
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
-                <MDBIcon icon="home" className="me-2" />
                 Sweden, Stockholm
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
                 jamshidbahadoriasd@gmail.com
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" /> + 4676757097
               </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
-              </p>
+              <a href='https://www.linkedin.com/in/jamshid-bahadori/' className='me-4 text-reset'>
+              linkedin
+              </a>
+              <br/>
+              <a href='https://github.com/jamshidbahadori19' className='me-4 text-reset'>
+                github
+              </a>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </section>
     </MDBFooter>
+    </div>
   );
 }
 

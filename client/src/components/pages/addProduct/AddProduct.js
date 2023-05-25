@@ -1,12 +1,12 @@
 import { useState,useEffect } from 'react';
-import {Button,Col,Form,InputGroup,Row} from "react-bootstrap"
+import {Button,Col,Form,InputGroup} from "react-bootstrap"
 import axios from 'axios'
 import {useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import storage from '../../fireBase/FireBase';
 import { ref,uploadBytes,getDownloadURL } from 'firebase/storage';
 import {v4} from "uuid"
-
+import "./addProduct.css"
 function ProductForm() {
   const[name,setName]=useState("")
   const[category,setCategory] = useState("")
@@ -69,17 +69,18 @@ function ProductForm() {
     const imageRef = ref(storage, `images/${image.name + v4()}`)
     const snapShot = await uploadBytes(imageRef,image)
     const url = await getDownloadURL(snapShot.ref)
-    setImage(url)
+    const settingImage = setImage(url)
     console.log(url)
+    
   }
 
   return (
-    <div>
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <div className='formContainer'>
+    <Form noValidate validated={validated} onSubmit={handleSubmit} className='subFormContainer'>
       {token?(<>
-        <Row className="mb-3" >
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>Name of product</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustom01" className='formGroup' >
+          
+          <Form.Label className='formLabel'>Name of product</Form.Label>
           <Form.Control
             required
             type="text"
@@ -87,24 +88,17 @@ function ProductForm() {
             value={name}
             onChange={(e)=>setName(e.target.value)}
           />
-  
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          <Form.Control.Feedback type="invalid">
-              Please choose a name.
-            </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>category</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustom02" className='formGroup'>
+          <Form.Label className='formLabel'>category</Form.Label>
           <Form.Select required value={category} onChange={(e)=>setCategory(e.target.value)}>
-          <option disabled>Choose</option>
             <option>shirt</option>
             <option>Jeans</option>
             <option>T-shirt</option>
           </Form.Select>
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-          <Form.Label>photo</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustomUsername" className='formGroup'>
+          <Form.Label className='formLabel'>photo</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
              required
@@ -113,47 +107,25 @@ function ProductForm() {
               name="picture"
               onChange={(e)=>setImage(e.target.files[0])}
             />
-        <Button onClick={handleImageUpload}>addingPhoto</Button>
-        <Form.Control.Feedback>remember to click on the addingPhoto!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-              Please choose an image.
-            </Form.Control.Feedback>
           </InputGroup>
+          <Button onClick={handleImageUpload} style={{backgroundColor:"darkolivegreen"}}>addingPhoto</Button>
         </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="6" controlId="validationCustom03">
-          <Form.Label>description</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustom03" className='formGroup'>
+          <Form.Label className='formLabel'>description</Form.Label>
           <Form.Control  required type="text" placeholder="description your product" value={description}
             onChange={(e)=>setDescription(e.target.value)}/>
-          <Form.Control.Feedback type="invalid">
-            Please provide description.
-          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom04">
-          <Form.Label>Price</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustom04" className='formGroup'>
+          <Form.Label className='formLabel'>Price</Form.Label>
           <Form.Control required type="price" placeholder="Price in kr"  value={price}
             onChange={(e)=>setPrice(e.target.value)} />
-          <Form.Control.Feedback type="invalid">
-            Please set a Price.
-          </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom05">
-          <Form.Label>Place</Form.Label>
+        <Form.Group as={Col} md="8" controlId="validationCustom05" className='formGroup'>
+          <Form.Label className='formLabel'>Place</Form.Label>
           <Form.Control required  type="text" placeholder="place" value={place}
             onChange={(e)=>setPlace(e.target.value)}/>
-          <Form.Control.Feedback type="invalid">
-            Please provide a place.
-          </Form.Control.Feedback>
         </Form.Group>
-      </Row>
-      <Form.Group className="mb-3">
-        <Form.Check
-          required
-          label="Agree to terms and conditions"
-          feedback="You must agree before submitting."
-          feedbackType="invalid"
-        />
+      <Form.Group className="mb-3 formGroup">
       </Form.Group>
       <Button type="submit">Submit form</Button>
       </>):(<>
@@ -161,7 +133,6 @@ function ProductForm() {
           please log in first
         </div>
       </>)}
-      
     </Form> 
     </div>
   );
