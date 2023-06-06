@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import {NotificationManager,NotificationContainer} from 'react-notifications';
+import {NotificationManager,NotificationContainer} from 'react-notifications'
 
 const PostRegisterData = async (data) => {
 

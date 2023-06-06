@@ -109,7 +109,7 @@ function ProductForm() {
               onChange={(e)=>setImage(e.target.files[0])}
             />
           </InputGroup>
-          <Button onClick={handleImageUpload} style={{backgroundColor:"darkolivegreen"}}>addingPhoto</Button>
+          <Button onClick={handleImageUpload} style={{backgroundColor:"purple"}}>addingPhoto</Button>
         </Form.Group>
         <Form.Group as={Col} md="8" controlId="validationCustom03" className='formGroup'>
           <Form.Label className='formLabel'>description</Form.Label>

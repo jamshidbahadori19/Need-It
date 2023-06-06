@@ -125,10 +125,6 @@ function LoginForm() {
                 id="password"
                 onChange={(e)=> setPassword(e.target.value)}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me" /* onClick={handleSavingData} */
-              />
               <Button
                 endIcon={<LoginIcon/>} 
                 type="submit"
@@ -139,11 +135,11 @@ function LoginForm() {
                 Login
               </Button>
               <Grid container>
-                <Grid item xs>
+   {/*              <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Link to='/user/signUp'>
                     Don't have an account? Sign Up

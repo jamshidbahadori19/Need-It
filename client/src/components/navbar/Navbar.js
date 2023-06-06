@@ -1,5 +1,5 @@
 
-import {Button,Container,Form,Nav,Navbar,NavDropdown} from "react-bootstrap"
+import {Button,Container,Nav,Navbar} from "react-bootstrap"
 import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
@@ -17,7 +17,6 @@ function NavScrollExample() {
     let confirmation = window.confirm("Are you sure that you want to logout?")
     if(confirmation){  
     localStorage.removeItem("token")
-    navigate("/user/login")
     }else{
       return
     }
@@ -75,7 +74,7 @@ function NavScrollExample() {
                   {cartLength}
                 </div>
             </Button>
-          <Nav.Link as={Link} onClick={logout}><LogoutIcon/></Nav.Link>
+          <Nav.Link as={Link} to={`/user/login`} onClick={logout}><LogoutIcon/></Nav.Link>
           </>
           )
           :

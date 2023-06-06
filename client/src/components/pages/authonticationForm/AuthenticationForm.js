@@ -7,13 +7,12 @@ import * as React from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
 import PostRegisterData from "./PostRegisterData";
-/* import { useNavigate } from "react-router-dom"; */
 import { NotificationContainer } from "react-notifications";
 
-function Copyright(props) {
+function Text(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'created in '}
       {' '}
       {new Date().getFullYear()}
       {'.'}
@@ -24,7 +23,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 function AuthenticationForm() {
-/*   const navigate = useNavigate() */
+  const navigate = useNavigate()
   const emailPattern= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
   const {
@@ -40,10 +39,7 @@ function AuthenticationForm() {
       password: "",
     });
     const posted = await PostRegisterData(userData,emailPattern);
-
-   /*  if(posted){
-      navigate("/user/login")
-    } */
+  
   };
 
   
@@ -118,7 +114,7 @@ function AuthenticationForm() {
                 required: "Password is required.",
                 minLength: {
                   value: 6,
-                  message: "Password should be at-least 5 characters.",
+                  message: "Password should be at-least 6 characters.",
               },
             })}
             />
@@ -126,10 +122,6 @@ function AuthenticationForm() {
             <p className='errorMsg' style={{color:"red"}}>{errors.password.message}</p>
             )}
               {/* <PasswordStrengthBar password={password} /> */}
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 endIcon ={<HowToRegTwoToneIcon/>}
                 type="submit"
@@ -140,18 +132,18 @@ function AuthenticationForm() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Link to='/user/login'>
                     You already have an account? Login
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              <Text sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>

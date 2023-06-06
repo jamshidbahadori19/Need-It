@@ -19,7 +19,9 @@ function DeleteButton({cardItem,props}) {
       }
 
       async function handleNotification(response){
-        if(response=="deleted product"){
+        let confirmation = window.confirm("Are you sure that you want to delete?")
+        if(confirmation){
+          if(response=="deleted product"){
             NotificationManager.success('deleted');
             props()
         }else{
@@ -27,6 +29,8 @@ function DeleteButton({cardItem,props}) {
                 alert('callback');
               });
         }
+        }
+        
        }
 
     async function handleDelete(){
