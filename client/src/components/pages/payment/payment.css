@@ -11,7 +11,7 @@
 /*     background: #f8f9fa; */
 }
 
-.container {
+.cart-container {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -20,11 +20,11 @@
     margin: 20px;
 }
 
-.container:hover{
+.cart-container:hover{
     box-shadow: 0 0 20px #ccc;
 }
 
-.container .imgBx {
+.cart-container .imgBx {
     position: relative;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
     transition: .3s linear;
 }
 
-.container .imgBx img {
+.cart-container .imgBx img {
     position: relative;
     width: 25rem;
     transform: rotate(-20deg);
@@ -42,7 +42,7 @@
     transition: .9s linear;
 }
 
-.container .details {
+.cart-container .details {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@
     padding: 40px;
 }
 
-.container .details h2{
+.cart-container .details h2{
     margin: 0;
     padding: 0;
     font-size: 2.4em;
@@ -60,14 +60,14 @@
     color: #444;
 }
 
-.container .details h2 span {
+.cart-container .details h2 span {
     font-size: 0.4em;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #999;
 }
 
-.container .details p {
+.cart-container .details p {
     max-width: 85%;
     margin-left: 15%;
     color: #333;
@@ -75,13 +75,13 @@
     margin-bottom: 36px;
 }
 
-.container .details h3 {
+.cart-container .details h3 {
     margin: 0;
     padding: 0;
     font-size: 2.5em;
     color: #a2a2a2;
 }
-.container .details button {
+.cart-container .details button {
     background: #000;
     color: #fff;
     border: none;
@@ -99,10 +99,10 @@
 
 /* responsive */
 @media (max-width: 1080px) {
-    .container {
+    .cart-container {
         height: auto;
     }
-    .container .imgBx {
+    .cart-container .imgBx {
         padding: 40px;
         box-sizing: border-box;
         width: 100% !important;
@@ -110,17 +110,17 @@
         text-align: center;
         overflow: hidden;
     }
-    .container .imgBx img {
+    .cart-container .imgBx img {
         left: initial;
         max-width: 100%;
         transform: rotate(0deg);
     }
-    .details {
+    .cart-container {
         width: 100% !important;
         height: auto;
         padding: 20px;
     }
-    .container .details p {
+    .cart-container .details p {
         margin-left: 0;
         max-width: 100%;
     }

@@ -58,7 +58,7 @@ function CartForm() {
           {saveProduct.length > 0 && (
             <div key={saveProduct.id}>
               {saveProduct.map((savedProduct) => (
-               <div className="container" key={savedProduct._id} >
+               <div className="cart-container" key={savedProduct._id} >
                 <div className="imgBx" style={{border:"1px solid blue"}}>
                   <img src={savedProduct.photo} alt="card"/>
                 </div>
