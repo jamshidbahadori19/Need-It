@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import "./wishStyle.css"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, IconButton } from "@mui/material";
@@ -12,6 +13,8 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
+
+
 
 
 function WishList() {
@@ -62,7 +65,53 @@ function WishList() {
           <div className='main' key={saveProduct.id}>
           {saveProduct.map((savedProduct)=>{
             return (
-              <div className='main' style={{"box-shadow": "rgb(38, 57, 77) 0px 20px 30px -10px"}} key={savedProduct.id}>
+              <div class="wish-container">
+              <div class="wish-card">
+                  <div class="wish-card-content">
+                      <div class="image-container">
+                          <img src={savedProduct.photo} alt="" />
+                      </div>
+                      <div class="card-details">
+                        <div>
+                          <h2>model:{savedProduct.name}</h2>
+                          <p>Category:{savedProduct.category}</p>
+                          <p>price:{savedProduct.price}$</p>
+                          <p>place:{savedProduct.Place}</p>
+                          <p> description:{savedProduct.description}</p>
+                        </div>
+                          <NotificationContainer/>
+                          {token?(
+                          <>
+                              <div>
+                                  <span><AddToCart cardItem={savedProduct}/></span>
+                                  <span>  <IconButton aria-label="delete" sx={{ backgroundColor:"red",borderRadius:0,"width":"16.2rem"}} onClick={()=>handleDelete(savedProduct.id)}>
+                                              <DeleteOutlineOutlinedIcon/>
+                                          </IconButton>
+                                  </span> 
+                                </div>
+                          </>
+                      ):(
+                          <>
+                          <button disabled>like</button>
+                          <button disabled>delete</button>
+
+                          </>
+                      )}
+                      </div>
+                  </div>
+              </div>
+      </div>
+                    )
+                  })}
+          </div>
+        )}
+        </div>
+      );
+}
+
+export default WishList;
+
+{/* <div className='main' style={{"box-shadow": "rgb(38, 57, 77) 0px 20px 30px -10px"}} key={savedProduct.id}>
                 <Card sx={{ display:"flex"}} className='card'>
                   <CardMedia
                       className='image'
@@ -109,13 +158,4 @@ function WishList() {
                           </>
                       )}
               </Card>
-            </div>
-                    )
-                  })}
-          </div>
-        )}
-        </div>
-      );
-}
-
-export default WishList;
+            </div> */}
