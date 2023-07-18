@@ -28,16 +28,6 @@ function ProductForm() {
     }
   }
 
-/*   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  }; */
-
   async function handleSubmit(e){
       let addProduct = {
         name : name,
@@ -109,7 +99,7 @@ function ProductForm() {
               onChange={(e)=>setImage(e.target.files[0])}
             />
           </InputGroup>
-          <Button onClick={handleImageUpload} style={{backgroundColor:"purple"}}>addingPhoto</Button>
+          <Button onClick={handleImageUpload} style={{backgroundColor:"blue"}}>addingPhoto</Button>
         </Form.Group>
         <Form.Group as={Col} md="8" controlId="validationCustom03" className='formGroup'>
           <Form.Label className='formLabel'>description</Form.Label>

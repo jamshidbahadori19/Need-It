@@ -7,12 +7,12 @@ import {NotificationManager,NotificationContainer} from 'react-notifications';
 
 function AddToCart({cardItem}) {
 /*     const [color, setColor] = useState("blue") */
-    const handleStyling ={
+/*     const handleStyling ={
         width: '16.2rem',
         background:"blue",
         color:"black"
     }
-
+ */
     async function handleAdding(){
         let token = localStorage.getItem("token") 
         let decoded;
@@ -46,7 +46,7 @@ function AddToCart({cardItem}) {
     }
     return ( 
         <>
-            <Button className='addToCartButton' style={handleStyling} endIcon={<AddShoppingCartOutlinedIcon/>} onClick={()=>handleAdding()}>addToCart</Button>
+            <Button className='addToCartButton' /* style={handleStyling} */ endIcon={<AddShoppingCartOutlinedIcon/>} onClick={()=>handleAdding()}>addToCart</Button>
             <NotificationContainer/>
         </>
      );

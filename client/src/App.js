@@ -12,7 +12,7 @@ import LoginForm from "./components/pages/authonticationForm/LoginForm";
 import EachProduct from "./components/pages/products/EachProduct";
 import CartForm from "./components/pages/payment/Cart";
 import WishList from "./components/pages/wishList/WishList";
-import background from "./3835.jpg"
+import background from "./background.jpg"
 
 /* import RecipeReviewCard from "./components/cards/Cards"; */
 

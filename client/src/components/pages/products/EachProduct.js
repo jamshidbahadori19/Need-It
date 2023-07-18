@@ -14,6 +14,7 @@ const thisCard={
     /* border:"1px solid black", */
     "box-shadow": "rgb(38, 57, 77) 0px 10px 30px -10px",
     height:"100vh",
+    backgroundColor:"#f9f9f9"
 }
 
 

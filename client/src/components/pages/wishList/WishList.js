@@ -60,7 +60,7 @@ function WishList() {
     
       return (
         <div key={saveProduct.id}>
-          <h1>My Wishes</h1>
+          <h1 style={{color:"blue"}}>My Wishes</h1>
           {saveProduct.length > 0 &&(
           <div className='main' key={saveProduct.id}>
           {saveProduct.map((savedProduct)=>{
@@ -84,7 +84,8 @@ function WishList() {
                           <>
                               <div>
                                   <span><AddToCart cardItem={savedProduct}/></span>
-                                  <span>  <IconButton aria-label="delete" sx={{ backgroundColor:"red",borderRadius:0,"width":"16.2rem"}} onClick={()=>handleDelete(savedProduct.id)}>
+                                  <span>  <IconButton aria-label="delete" /* 
+                                   */ onClick={()=>handleDelete(savedProduct.id)}>
                                               <DeleteOutlineOutlinedIcon/>
                                           </IconButton>
                                   </span> 
@@ -111,51 +112,3 @@ function WishList() {
 
 export default WishList;
 
-{/* <div className='main' style={{"box-shadow": "rgb(38, 57, 77) 0px 20px 30px -10px"}} key={savedProduct.id}>
-                <Card sx={{ display:"flex"}} className='card'>
-                  <CardMedia
-                      className='image'
-                      component="img"
-                      sx={{ "height": "30rem", "width":"30rem"}}
-                      image={savedProduct.photo}
-                      alt="cardPhoto"
-                  />
-                  </Card>
-                  <Card>
-                  <CardContent className="card-content">
-                      <Typography gutterBottom variant="h5" component="div">
-                      model:{savedProduct.name}
-                      </Typography>
-                      <Typography color="text.secondary">
-                      Category:{savedProduct.category}
-                      </Typography>
-                      <Typography color="text.secondary">
-                      price:{savedProduct.price}$
-                      </Typography>
-                      <Typography color="text.secondary">
-                      place:{savedProduct.Place}
-                      </Typography>
-                      <Typography color="text.secondary">
-                      description:{savedProduct.description}
-                      </Typography>
-                  </CardContent>
-                  <NotificationContainer/>
-                  {token?(
-                          <>
-                              <div className="main" style={{display:"grid"}}>
-                                  <span><AddToCart cardItem={savedProduct}/></span>
-                                  <span>  <IconButton aria-label="delete" sx={{ backgroundColor:"red",borderRadius:0,"width":"16.2rem"}} onClick={()=>handleDelete(savedProduct.id)}>
-                                              <DeleteOutlineOutlinedIcon/>
-                                          </IconButton>
-                                  </span> 
-                                </div>
-                          </>
-                      ):(
-                          <>
-                          <button disabled>like</button>
-                          <button disabled>delete</button>
-
-                          </>
-                      )}
-              </Card>
-            </div> */}

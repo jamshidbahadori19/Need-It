@@ -1,30 +1,30 @@
 
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
 ul {
     list-style: none;
 
 }
 
 .footer{
-    background-color: rgb(76, 76, 216);
+    background-color: #24262b;
     padding: 70px 0;
 }
 
-.footer-container{
-    max-width: 1170px;
+.footer_container{
+    max-width: 1100px;
     margin: auto;
 }
+#row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
-.footer-col{
+.footer_col{
     width:25%;
     padding: 0 15px;
 }
 
-.footer-col h4{
+h4{
     font-size: 18px;
     color: #fff;
     text-transform: capitalize;
@@ -33,7 +33,7 @@ ul {
     position: relative;
 }
 
-.footer-col h4::before{
+h4::before{
     content: "";
     position: absolute;
     left: 0;
@@ -44,10 +44,10 @@ ul {
     width: 50px;
 }
 
-.footer-col ul li:not(:last-child) {
+li:not(:last-child) {
     margin-bottom: 10px;
 }
-.footer-col ul li a {
+li a {
     font-size: 16px;
     text-transform: capitalize;
     color: #fff;
@@ -59,12 +59,12 @@ ul {
 
 }
 
-.footer-col ul li a:hover{
+li a:hover{
     color: #fff;
     padding-left: 8px;
 }
 
-.footer-col .social-links a {
+.social_links a {
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -77,13 +77,13 @@ ul {
     transition: all 0.5 ease;
 }
 
-.footer-col .social-links a:hover{
+.social_links a:hover{
     color: #24262b;
     background-color: #fff;
 }
 
 @media (max-width:767px) {
-    .footer-col{
+    .footer_col{
         width: 50%;
         margin-bottom: 30px;
     }

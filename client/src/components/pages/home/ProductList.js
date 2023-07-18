@@ -44,7 +44,7 @@ export default function RecipeReviewCard() {
         {cards.map((card)=>{
             return(
                 <div className='card-container' key={card._id}>
-                    <Card sx={{ width: 400}} className='card'>
+                    <Card sx={{ width: 350}} className='card'>
                     <Link to={`/eachProduct/${card._id}`}>
                     <CardMedia
                         className='image'

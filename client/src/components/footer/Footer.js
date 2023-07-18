@@ -1,49 +1,29 @@
 
 
 import React from 'react';
-import "./FooterStyle.css"
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Link } from 'react-router-dom';
+import "./FooterStyle.css";
 
 function Footer() {
   return (
-    <footer class="footer">
-      <div class="footer-container">
-          <div class="row">
-              <div class="footer-col">
-                  <h4>Company</h4>
-                  <ul>
-                      <li><a href="#">About us</a></li>
-                      <li><a href="#">our services</a></li>
-                      <li><a href="#">privacy policy</a></li>
-                      <li><a href="#">affiliate program</a></li>
-                  </ul>
-              </div>
-              <div class="footer-col">
-                  <h4>get Help</h4>
-                  <ul>
-                      <li><a href="#">FAQ</a></li>
-                      <li><a href="#">shipping</a></li>
-                      <li><a href="#">returns</a></li>
-                      <li><a href="#">order status</a></li>
-                      <li><a href="#">payment options</a></li>
-                  </ul>
-              </div>
-              <div class="footer-col">
+    <footer className="footer">
+      <div className="footer_container">
+          <div id="row">
+              <div className="footer_col">
                   <h4>Online Store</h4>
                   <ul>
-                      <li><a href="#">Watch</a></li>
-                      <li><a href="#">Bag</a></li>
-                      <li><a href="#">Shoes</a></li>
-                      <li><a href="#">Dress</a></li>
+                      <li><Link to="/">Home</Link></li>
+                      <li><Link to="/productForm">Add Product</Link></li>
+                      <li><Link to="/wishList">Wish-List</Link></li>
                   </ul>
               </div>
-              <div class="footer-col">
+              <div className="footer_col" >
                   <h4>Follow us</h4>
-                      <div class="social-links">
-                          {/* <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                          <a href="#"><i class="fa-brands fa-instagram"></i></a> */}
-
+                      <div className="social_links">
+                          <a href="https://www.linkedin.com/in/jamshid-bahadori/"><LinkedInIcon/></a>
+                          <a href="https://github.com/jamshidbahadori19"><GitHubIcon/></a>
                       </div>
               </div>
           </div>
