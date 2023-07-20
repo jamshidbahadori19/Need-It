@@ -3,7 +3,7 @@ This is an e-commerce project which enables everyone to sell, buy or even do mar
 In this project we are able to choose our product add them to the favorite section (after sign up and login) or to buy them immediately. 
 I have used multiple dependencies in this project.
 
-list of independencies for server: 
+# list of independencies for server: 
 "bcrypt": "^5.1.0",
 "cors": "^2.8.5",
 "dotenv": "^16.0.3",
@@ -11,7 +11,7 @@ list of independencies for server:
 "jsonwebtoken": "^9.0.0",
 "mongoose": "^7.0.5"
 
-LIST of independencies for client: 
+#LIST of independencies for client: 
 "@chec/commerce.js": "^2.8.0",
 "@emotion/react": "^11.10.6",
 "@emotion/styled": "^11.10.6",
