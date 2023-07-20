@@ -1,34 +1,31 @@
 # Need-It
 This is an e-commerce project which enables everyone to sell, buy or even do marketing for their products.
 In this project we are able to choose our product add them to the favorite section (after sign up and login) or to buy them immediately. 
-I have used multiple dependencies in this project.
 
-# list of independencies for server: 
-"bcrypt": "^5.1.0",
-"cors": "^2.8.5",
-"dotenv": "^16.0.3",
-"express": "^4.18.2",
-"jsonwebtoken": "^9.0.0",
-"mongoose": "^7.0.5"
+# Features
 
-#LIST of independencies for client: 
-"@chec/commerce.js": "^2.8.0",
-"@emotion/react": "^11.10.6",
-"@emotion/styled": "^11.10.6",
-"@mui/icons-material": "^5.11.16",
-"@mui/material": "^5.12.2",
-"@testing-library/jest-dom": "^5.16.5",
-"@testing-library/react": "^13.4.0",
-"@testing-library/user-event": "^13.5.0",
-"axios": "^1.3.6",
-"bootstrap": "^5.2.3",
-"jwt-decode": "^3.1.2",
-"mdb-react-ui-kit": "^6.0.0",
-"react": "^18.2.0",
-"react-bootstrap": "^2.7.4",
-"react-dom": "^18.2.0",
-"react-password-strength-bar": "^0.4.1",
-"react-router-dom": "^6.10.0",
-"react-scripts": "5.0.1",
-"web-vitals": "^2.1.4"
++ User Registration and Login : Register, login and logout functionality for users using bcrypt for password hashing and JWT (JSON Web Token) for secure authentication.
++ Whish-list: user can add product to the wish bascket. In this way the user can keep the product and buy it whenever he wants.
++ Cart: user can add different products to the cart and buy them all at once.
++ addProduct: users are allowed to create their own product and post it online in order to sell it. 
+
+#Dependencies
+
++ mongoose: A MongoDB object modeling tool for Node.js that provides a straightforward, schema-based solution to model application data and interact with MongoDB databases
++ express : A fast and minimalistic web application framework for Node.js, providing robust routing and middleware capabilities
++ cors: A middleware for enabling Cross-Origin Resource Sharing (CORS) in the Express server, allowing requests from different origins
++ jsonwebtoken: A library for generating and verifying JSON Web Tokens (JWT) for secure authentication, facilitating user authentication and authorization.
++ bcrypt: A library for hashing passwords and comparing hashed passwords during authentication
++ dotenv: A module for loading environment variables from a .env file into process.env, simplifying configuration management
++ MUI: Material UI is an open-source React component library that implements Google's Material Design.
++ bootstrap: Bootstrap is a free, open source front-end development framework for the creation of websites and web apps
++ Strip: Handling purpurchase
+
+#Project Overview
+
+
+![1](https://github.com/jamshidbahadori19/Need-It/assets/90925794/75893d82-58e4-410f-897f-16f9776d6314)
+![2](https://github.com/jamshidbahadori19/Need-It/assets/90925794/14c7c982-904a-4d52-875f-ab967db490f7)
+![3](https://github.com/jamshidbahadori19/Need-It/assets/90925794/9aa6afc4-9d8e-4bdb-8a32-dc1c293aa5ee)
+
 
